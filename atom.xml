@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-04-20T14:22:13.214Z</updated>
+  <updated>2021-04-21T10:51:29.463Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,22 +17,29 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>page</title>
-    <link href="http://example.com/2021/04/20/page/"/>
-    <id>http://example.com/2021/04/20/page/</id>
-    <published>2021-04-20T14:19:34.000Z</published>
-    <updated>2021-04-20T14:22:13.214Z</updated>
+    <title>爬虫与面向对象爬虫</title>
+    <link href="http://example.com/2021/04/21/PHP/"/>
+    <id>http://example.com/2021/04/21/PHP/</id>
+    <published>2021-04-21T10:50:34.000Z</published>
+    <updated>2021-04-21T10:51:29.463Z</updated>
     
-    <content type="html"><![CDATA[<p>menu:<br>  首页: / || fas fa-home<br>  时间轴: /archives/ || fas fa-archive<br>  标签: /tags/ || fas fa-tags<br>  分类: /categories/ || fas fa-folder-open<br>  关于: /about/ || fas fa-heart</p>]]></content>
+    <content type="html"><![CDATA[<p>##普通面向对象（爬取burst.shopify.com下的图片）</p><p><strong>总体思想</strong></p><p>第一步：观察网页构造，为写代码做准备，检查是否有反爬技术</p><p>第二布：检查所要下载的图片，观察格式，并且构造正则表达式</p><p>第三步：过滤重复的图片</p><p>第四步：保存图片，并作相关优化</p>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;menu:&lt;br&gt;  首页: / || fas fa-home&lt;br&gt;  时间轴: /archives/ || fas fa-archive&lt;br&gt;  标签: /tags/ || fas fa-tags&lt;br&gt;  分类: /categories/ || fas fa-fol</summary>
+    <summary type="html">&lt;p&gt;##普通面向对象（爬取burst.shopify.com下的图片）&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;总体思想&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;第一步：观察网页构造，为写代码做准备，检查是否有反爬技术&lt;/p&gt;
+&lt;p&gt;第二布：检查所要下载的图片，观察格式，并且构造正则表达式&lt;/p</summary>
       
     
     
     
+    <category term="-Python -数据挖掘" scheme="http://example.com/categories/Python-%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
+    
+    
+    <category term="-普通爬图片 -面向对象爬图片" scheme="http://example.com/tags/%E6%99%AE%E9%80%9A%E7%88%AC%E5%9B%BE%E7%89%87-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%88%AC%E5%9B%BE%E7%89%87/"/>
     
   </entry>
   
