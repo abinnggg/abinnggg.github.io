@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>A.bin&#39;s Blog</title>
+  <title>A.binのBlog</title>
   
   
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-04-21T16:04:49.051Z</updated>
+  <updated>2021-04-22T04:28:20.141Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://example.com/2021/04/22/Linux/"/>
     <id>http://example.com/2021/04/22/Linux/</id>
     <published>2021-04-22T10:50:34.000Z</published>
-    <updated>2021-04-21T16:04:49.051Z</updated>
+    <updated>2021-04-22T04:28:20.141Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="1-基础命令"><a href="#1-基础命令" class="headerlink" title="1.基础命令"></a>1.基础命令</h1><h2 id="1）文件处理命令"><a href="#1）文件处理命令" class="headerlink" title="1）文件处理命令"></a>1）文件处理命令</h2><h4 id="1-ls命令（目录处理命令）"><a href="#1-ls命令（目录处理命令）" class="headerlink" title="1.ls命令（目录处理命令）"></a><strong>1.ls命令（目录处理命令）</strong></h4><ul><li>​            ls 展示根目录下的文件</li></ul><ul><li>​            ls-a显示所有文件</li></ul><ul><li><p>​            ls-l 详细信息显示</p><p>​                第三部分为所有者、第四部门为所属组、第五部分为文件大小(-h为人性化显示)</p><p>​                开头十个字符：例：-rw-r–r–</p></li></ul><p>​                                            u(所有者)  g(所属组)  o(其他人)   （每三个一组）</p><p>​                                            r读         w写        x执行</p><p>​                        表示文件、 d 表示目录、 l 为软链接（最常见的三种）</p><ul><li><p>​            ls-d 查看目录属性</p></li><li><p>​            目录处理命令</p><ul><li>mkdir、cd 、pwd（显示当前所在目录，绝对路径）、rmdir（删除空目录）、cp    </li><li>mkdir -p[目录名]  创建新目录  -p 递归创建</li><li>cd / （进入目录）  cd..(回到上一级目录)</li><li>cp -r （复制目录） 例：cp-r /要复制的目录/复制到哪      cp-p （保留文件属性）</li></ul></li></ul><p>​            </p>]]></content>
+    <content type="html"><![CDATA[<h1 id="1-基础命令"><a href="#1-基础命令" class="headerlink" title="1.基础命令"></a>1.基础命令</h1><h2 id="1）文件处理命令"><a href="#1）文件处理命令" class="headerlink" title="1）文件处理命令"></a>1）文件处理命令</h2><h4 id="1-ls命令（目录处理命令）"><a href="#1-ls命令（目录处理命令）" class="headerlink" title="1.ls命令（目录处理命令）"></a><strong>1.ls命令（目录处理命令）</strong></h4><ul><li>​            ls 展示根目录下的文件</li></ul><ul><li>​            ls-a显示所有文件</li></ul><ul><li><p>​            ls-l 详细信息显示</p><ul><li>第三部分为所有者、第四部门为所属组、第五部分为文件大小(-h为人性化显示)</li></ul></li><li><p>开头十个字符：例：-rw-r–r–</p><ul><li>u(所有者)  g(所属组)  o(其他人)   （每三个一组）</li><li>​                r读         w写        x执行</li><li>表示文件、 d 表示目录、 l 为软链接（最常见的三种）</li></ul></li><li><p>​            ls-d 查看目录属性</p></li><li><p>​            目录处理命令</p><ul><li>mkdir、cd 、pwd（显示当前所在目录，绝对路径）、rmdir（删除空目录）、cp    </li><li>mkdir -p[目录名]  创建新目录  -p 递归创建</li><li>cd / （进入目录）  cd..(回到上一级目录)</li><li>cp -r （复制目录） 例：cp-r /要复制的目录/复制到哪      cp-p （保留文件属性）</li></ul></li></ul><p>​            </p>]]></content>
     
     
       
