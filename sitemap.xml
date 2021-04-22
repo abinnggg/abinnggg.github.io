@@ -69,13 +69,6 @@
 
   
   <url>
-    <loc>http://example.com/categories/PHP-%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/</loc>
-    <lastmod>2021-04-22</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://example.com/categories/Linux/</loc>
     <lastmod>2021-04-22</lastmod>
     <changefreq>daily</changefreq>
@@ -84,6 +77,13 @@
   
   <url>
     <loc>http://example.com/categories/Python/</loc>
+    <lastmod>2021-04-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/categories/PHP-%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/</loc>
     <lastmod>2021-04-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
