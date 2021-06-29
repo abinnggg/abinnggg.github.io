@@ -6,7 +6,7 @@
   <link href="https://abinix.top/atom.xml" rel="self"/>
   
   <link href="https://abinix.top/"/>
-  <updated>2021-06-25T02:44:19.384Z</updated>
+  <updated>2021-06-29T07:58:24.372Z</updated>
   <id>https://abinix.top/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>谷歌语法学习记录</title>
+    <link href="https://abinix.top/2021/06/29/post/"/>
+    <id>https://abinix.top/2021/06/29/post/</id>
+    <published>2021-06-29T07:39:21.000Z</published>
+    <updated>2021-06-29T07:58:24.372Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><h1 id="谷歌语法简介"><a href="#谷歌语法简介" class="headerlink" title="谷歌语法简介"></a>谷歌语法简介</h1><ol><li><h2 id="基本语法（常用）"><a href="#基本语法（常用）" class="headerlink" title="基本语法（常用）"></a>基本语法（常用）</h2><ul><li><p><strong>“xxx”+域名：</strong>     搜索xxx与 域名 相关的内容</p></li><li><p><strong>“xxx”：</strong>     精确寻找，引号内输入</p></li><li><p><strong>site：</strong>     指定域名，如：<code>site:edu.cn</code> 搜索教育网站</p></li><li><p><strong>inurl：</strong>     用于搜索包含的url关键词的网页，如：<code>inurl:uploads</code> 文件上传，搜索关于公司有关的网址中含有login的网页，</p></li><li><p><strong>intext：</strong>     搜索网页正文中的关键字，如：<code>intext:登陆/注册/用户名/密码</code></p></li><li><p><strong>filetype：</strong>     按指定文件类型即文件后缀名搜索，如：<code>filetpye:php/asp/jsp</code></p></li><li><p><strong>info：</strong>     可以搜索到一个url更多的信息 如：<code>info:www.baidu.com</code></p></li><li><p><strong>link：</strong>     搜索所有链接到某个特定url的页面 如：<code>link:www.baidu.com</code></p></li><li><p><strong>AND,OR：</strong>     前者用来关联，后者代表两者其一都可</p></li><li><p><strong>“?”和“*”：</strong>     占位通配符，匹配一些模糊搜索</p></li><li><p><strong>Cache：</strong>    搜索缓存 如：<code>cache: [www.baidu.com](http://www.baidu.com)</code></p></li></ul></li><li><h2 id="骚操作语法，渗透测试中用到"><a href="#骚操作语法，渗透测试中用到" class="headerlink" title="骚操作语法，渗透测试中用到"></a>骚操作语法，渗透测试中用到</h2><h3 id="搜索敏感文件："><a href="#搜索敏感文件：" class="headerlink" title="搜索敏感文件："></a>搜索敏感文件：</h3><ul><li><p><code>site:xxx.com filetype:doc</code> //只返回xxx.com站点上文件类型为doc的网页</p></li><li><p><code>site:xxx.com filetype:xls</code> //只返回xxx.com站点上文件类型为xls的网页</p></li><li><p><code>site:xxx.com filetype:cof</code> //只返回xxx.com站点上文件类型为cof的网页</p></li></ul><h3 id="搜索管理后台："><a href="#搜索管理后台：" class="headerlink" title="搜索管理后台："></a>搜索管理后台：</h3><ul><li><p><code>inurl:/admin/login.php</code> //查找管理员登录页面</p></li><li><p><code>inurl:/phpmyadmin/index.php</code> //查找后台数据库管理页面</p></li><li><p><code>site:xxx.com inurl:login</code> //在xxx.com站点中查找url中含有login的页面</p></li></ul><h3 id="搜索mail"><a href="#搜索mail" class="headerlink" title="搜索mail:"></a>搜索mail:</h3><ul><li><code>site:xxx.com intext:@xxx.com</code></li></ul><h3 id="查找后台："><a href="#查找后台：" class="headerlink" title="查找后台："></a>查找后台：</h3><ul><li><code>site:xx.com intext:管理|后台|登陆|用户名|密码|系统|帐</code></li></ul><h3 id="查找上传点："><a href="#查找上传点：" class="headerlink" title="查找上传点："></a>查找上传点：</h3><ul><li><code>site:xx.com inurl:file| uploadfile</code></li></ul><h3 id="查找上传漏洞："><a href="#查找上传漏洞：" class="headerlink" title="查找上传漏洞："></a><strong>查找上传漏洞：</strong></h3><ul><li>site:域名 <code>inurl:file|load|editor|Files</code></li></ul><h3 id="查找目录："><a href="#查找目录：" class="headerlink" title="查找目录："></a>查找目录：</h3><ul><li> 用Index of 语法现允许目录浏览的web网站 如：<code>index of /admin</code></li></ul></li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;/h1&gt;&lt;h1 id=&quot;谷歌语法简介&quot;&gt;&lt;a href=&quot;#谷歌语法简介&quot; class=&quot;headerlink&quot; title=&quot;谷歌语法简介&quot;&gt;&lt;/a&gt;谷歌语法简介&lt;/h</summary>
+      
+    
+    
+    
+    
+    <category term="-语法" scheme="https://abinix.top/tags/%E8%AF%AD%E6%B3%95/"/>
+    
+  </entry>
   
   <entry>
     <title>关于SQL注入</title>
