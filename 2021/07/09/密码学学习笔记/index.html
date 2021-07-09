@@ -1,0 +1,281 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>密码学学习笔记 | A.binのBlog</title><meta name="author" content="A.bin"><meta name="copyright" content="A.bin"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="密码学学习笔记  🐕凯撒密码简介凯撒密码是最早的代换密码，使用单表代换。其基本思想是：通过把字母移动一定的位数来实现加密和解密。明文中的所有字母都在字母表上向后(或向前)按照一个固定数目进行偏移后被替换成密文。例如，当偏移量是3的时候，所有的字母A将被替换成D，B变成E，以此类推X将变成A，Y变成B，Z变成C。 位数就是凯撒密码加密和解密的密钥。 举个栗子：如果要对“zhaobin”这几个字符加">
+<meta property="og:type" content="article">
+<meta property="og:title" content="密码学学习笔记">
+<meta property="og:url" content="https://abinix.top/2021/07/09/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="A.binのBlog">
+<meta property="og:description" content="密码学学习笔记  🐕凯撒密码简介凯撒密码是最早的代换密码，使用单表代换。其基本思想是：通过把字母移动一定的位数来实现加密和解密。明文中的所有字母都在字母表上向后(或向前)按照一个固定数目进行偏移后被替换成密文。例如，当偏移量是3的时候，所有的字母A将被替换成D，B变成E，以此类推X将变成A，Y变成B，Z变成C。 位数就是凯撒密码加密和解密的密钥。 举个栗子：如果要对“zhaobin”这几个字符加">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://abinix.top/img/fgf.jpg">
+<meta property="article:published_time" content="2021-07-09T08:46:33.000Z">
+<meta property="article:modified_time" content="2021-07-09T08:55:22.828Z">
+<meta property="article:author" content="A.bin">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://abinix.top/img/fgf.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://abinix.top/2021/07/09/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-07-09 16:55:22'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><link rel="stylesheet" href="/css/11.css"><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="A.binのBlog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/fgf.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">A.binのBlog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">密码学学习笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-07-09T08:46:33.000Z" title="发表于 2021-07-09 16:46:33">2021-07-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-07-09T08:55:22.828Z" title="更新于 2021-07-09 16:55:22">2021-07-09</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="密码学学习笔记"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 align = "center">密码学学习笔记</h1>
+
+<h2 id="🐕凯撒密码"><a href="#🐕凯撒密码" class="headerlink" title="🐕凯撒密码"></a>🐕凯撒密码</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>凯撒密码是最早的代换密码，使用单表代换。其基本思想是：通过把字母移动一定的位数来实现加密和解密。明文中的所有字母都在字母表上向后(或向前)按照一个固定数目进行偏移后被替换成密文。例如，<strong>当偏移量是3的时候，所有的字母A将被替换成D，B变成E，以此类推X将变成A，Y变成B，Z变成C。</strong> <strong>位数</strong>就是凯撒密码加密和解密的密钥。<br><img src="https://www.hualigs.cn/image/60e65d7637350.jpg"></p>
+<p>举个栗子：如果要对“zhaobin”这几个字符加密 设偏移量为 3，则我们对应ascii码进行位移</p>
+<ul>
+<li><p>z-&gt;w</p>
+</li>
+<li><p>h-&gt;e</p>
+</li>
+<li><p>a-&gt;x</p>
+</li>
+<li><p>o-&gt;l</p>
+</li>
+<li><p>b-&gt;y</p>
+</li>
+<li><p>i-&gt;f</p>
+</li>
+<li><p>n-&gt;k</p>
+<p>这样就将“zhaobin”加密为了“wexlyfk”，这就是凯撒</p>
+</li>
+</ul>
+<p><img src="https://www.hualigs.cn/image/60e685380a24c.jpg"></p>
+<h3 id="对于凯撒的解密，我们可以用脚本也可以用工具，python脚本如下（纯字母）"><a href="#对于凯撒的解密，我们可以用脚本也可以用工具，python脚本如下（纯字母）" class="headerlink" title="对于凯撒的解密，我们可以用脚本也可以用工具，python脚本如下（纯字母）"></a>对于凯撒的解密，我们可以用脚本也可以用工具，python脚本如下（纯字母）</h3><p>此题偏移量为3，所以代码中my为3</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">str</span> = <span class="string">&#x27;wexlyfk&#x27;</span></span><br><span class="line">my = <span class="number">3</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">str</span>,<span class="string">&quot;密钥&quot;</span>,my)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;密文:&quot;</span>, end=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">str</span>:</span><br><span class="line">  mw = <span class="built_in">ord</span>(i)</span><br><span class="line">  <span class="keyword">if</span> (<span class="number">64</span> &lt; mw &lt; <span class="number">91</span>):<span class="comment">#大写字母</span></span><br><span class="line">    jm = mw + my</span><br><span class="line">    <span class="keyword">if</span> jm &gt; <span class="number">90</span>:</span><br><span class="line">      jm = (mw - <span class="number">26</span>) + my</span><br><span class="line">      <span class="built_in">print</span>(<span class="built_in">chr</span>(jm), end=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">      <span class="built_in">print</span>(<span class="built_in">chr</span>(jm), end=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">  <span class="keyword">elif</span> (<span class="number">96</span> &lt; mw &lt; <span class="number">123</span>):<span class="comment">#小写字母</span></span><br><span class="line">    jm = mw + my</span><br><span class="line">    <span class="keyword">if</span> jm &gt; <span class="number">122</span>:</span><br><span class="line">      jm = (mw - <span class="number">26</span>) + my</span><br><span class="line">      <span class="built_in">print</span>(<span class="built_in">chr</span>(jm), end=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">      <span class="built_in">print</span>(<span class="built_in">chr</span>(jm), end=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">  <span class="keyword">else</span>:</span><br><span class="line">    jm = mw + <span class="number">0</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">chr</span>(jm), end=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<p><img src="https://www.hualigs.cn/image/60e69d9462a57.jpg"></p>
+<h2 id="🐕变异凯撒"><a href="#🐕变异凯撒" class="headerlink" title="🐕变异凯撒"></a>🐕变异凯撒</h2><h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><p>变异凯撒就是在凯撒的基础上<strong>有规律</strong>的位移</p>
+<p>再次举个栗子</p>
+<p>选用buu上的一道题</p>
+<p><strong>密文</strong>：afZ_r9VYfScOeO_UL^RWUc  因为是ctf题 所以我们看看能否与ctf 或者flag 对应上</p>
+<ul>
+<li><p>a的ascii码是<em>97</em>   而f的ascii是<em>102</em></p>
+</li>
+<li><p>f的ascii码是<em>102</em>  而l的ascii是<em>108</em></p>
+</li>
+<li><p>Z的ascii码是<em>106</em>  而a的ascii是<em>97</em></p>
+</li>
+<li><p>_的ascii码是<em>95</em>  而g的ascii是<em>103</em></p>
+</li>
+</ul>
+<p>a→f： 移动了5  f→l：移动了6， 后面依次移动了7、8</p>
+<h3 id="既可手撸又可脚本跑-以下为此题的变异凯撒脚本"><a href="#既可手撸又可脚本跑-以下为此题的变异凯撒脚本" class="headerlink" title="既可手撸又可脚本跑  以下为此题的变异凯撒脚本"></a>既可手撸又可脚本跑  以下为此题的变异凯撒脚本</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">KaiSa</span>(<span class="params">string,begin_num</span>):</span></span><br><span class="line">    begin_num = <span class="built_in">int</span>(begin_num)</span><br><span class="line">    string_list = <span class="built_in">list</span>(string)</span><br><span class="line">    print_string=<span class="string">&quot;&quot;</span> </span><br><span class="line">    <span class="keyword">for</span> char <span class="keyword">in</span> string_list:</span><br><span class="line">        num = <span class="built_in">ord</span>(char)</span><br><span class="line">        num+=begin_num</span><br><span class="line">        begin_num+=<span class="number">1</span></span><br><span class="line">        char=<span class="built_in">chr</span>(num)</span><br><span class="line">        print_string+=char</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(print_string)</span><br><span class="line">KaiSa(<span class="string">&quot;afZ_r9VYfScOeO_UL^RWUc&quot;</span>,<span class="number">5</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>此脚本<strong>固定</strong>起始值 偏移值为5 然后每次循环依次增加</p>
+<p>跑出来结果为  flag{Caesar_variation}  <strong>这就是变异凯撒</strong></p>
+<h2 id="🐕维吉尼亚"><a href="#🐕维吉尼亚" class="headerlink" title="🐕维吉尼亚"></a>🐕维吉尼亚</h2><p>类似的位移密码还有维吉尼亚密码等</p>
+<h3 id="简介-2"><a href="#简介-2" class="headerlink" title="简介"></a>简介</h3><p><strong>维吉尼亚密码</strong>（又译<strong>维热纳尔密码</strong>）是使用一系列<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%87%AF%E6%92%92%E5%AF%86%E7%A0%81">凯撒密码</a>组成密码字母表的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/2816213">加密算法</a>，属于多表密码的一种简单形式。</p>
+<p>它将凯撒密码的全部25种位移排序为一张表，与原字母序列共同组成26行及26列的字母表。另外，维吉尼亚密码必须有一个密钥，这个密钥由字母组成，最少一个，最多可与明文字母数量相等。</p>
+<p><img src="https://www.hualigs.cn/image/60e7a694c04c8.jpg"></p>
+<h4 id="解密方法："><a href="#解密方法：" class="headerlink" title="解密方法："></a>解密方法：</h4><p>​    <a target="_blank" rel="noopener" href="https://www.qqxiuzi.cn/bianma/weijiniyamima.php">https://www.qqxiuzi.cn/bianma/weijiniyamima.php</a> 用在线解密即可</p>
+<p>例：</p>
+<p>明文：i love it</p>
+<p>密钥：zb</p>
+<p>密文：j kpuf hu</p>
+<h2 id="🐕Base家族"><a href="#🐕Base家族" class="headerlink" title="🐕Base家族"></a>🐕Base家族</h2><p>base解法用在线工具即可</p>
+<p><a target="_blank" rel="noopener" href="http://www.atoolbox.net/Category.php?Id=27">http://www.atoolbox.net/Category.php?Id=27</a></p>
+<h3 id="🐱‍🐉Base62"><a href="#🐱‍🐉Base62" class="headerlink" title="🐱‍🐉Base62"></a>🐱‍🐉Base62</h3><ul>
+<li><h4 id="base62编码原理"><a href="#base62编码原理" class="headerlink" title="base62编码原理"></a>base62编码原理</h4><blockquote>
+<p>Base62编码是由10个数字、26个大写英文字母和26个小写英文字母组成</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="🐱‍🐉Base91"><a href="#🐱‍🐉Base91" class="headerlink" title="🐱‍🐉Base91"></a>🐱‍🐉Base91</h3><ul>
+<li><h4 id="base91编码原理"><a href="#base91编码原理" class="headerlink" title="base91编码原理"></a>base91编码原理</h4><blockquote>
+<p>从94个可打印ASCII字符（0x21-0x7E）中，以下三个字符被省略以构建base91字母：  　　　  -（破折号，0x2D） 　　　</p>
+<p>​            \（反斜杠，0x5C） 　　　</p>
+<p>​            ‘（撇号，0x27）</p>
+</blockquote>
+<h4 id="Base92则是-比base91-多一个字符-〜"><a href="#Base92则是-比base91-多一个字符-〜" class="headerlink" title="Base92则是 比base91 多一个字符 〜"></a>Base92则是 比base91 多一个字符 〜</h4></li>
+</ul>
+<h3 id="🐱‍🐉Base58"><a href="#🐱‍🐉Base58" class="headerlink" title="🐱‍🐉Base58"></a>🐱‍🐉Base58</h3><ul>
+<li><h4 id="base58编码原理"><a href="#base58编码原理" class="headerlink" title="base58编码原理"></a>base58编码原理</h4><blockquote>
+<p>字符为：123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz 去掉：0 O l  58=9个阿拉伯数字（去掉0）+24个大写字母（去掉I和O）+25小写字母（去掉l） </p>
+</blockquote>
+</li>
+</ul>
+<h3 id="🐱‍🐉Base36"><a href="#🐱‍🐉Base36" class="headerlink" title="🐱‍🐉Base36"></a>🐱‍🐉Base36</h3><ul>
+<li><h4 id="base36编码原理"><a href="#base36编码原理" class="headerlink" title="base36编码原理"></a>base36编码原理</h4><blockquote>
+<p>base36编码是使用0~9的数字，加上所有26个字母，所有的<strong>字母要不全大写，要不全小写。</strong></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="🐱‍🐉Base16"><a href="#🐱‍🐉Base16" class="headerlink" title="🐱‍🐉Base16"></a>🐱‍🐉Base16</h3><ul>
+<li><h4 id="base16编码原理"><a href="#base16编码原理" class="headerlink" title="base16编码原理"></a>base16编码原理</h4><blockquote>
+<p>Base16编码使用16个ASCII可打印字符<strong>（数字0-9和字母A-F）</strong>对任意字节数据进行编码。</p>
+</blockquote>
+<p>简单地说：用16（2的4次方）个字符，对二进制数据进行编码的方式</p>
+</li>
+</ul>
+<h3 id="🐱‍🐉Base64（最常见的base编码）"><a href="#🐱‍🐉Base64（最常见的base编码）" class="headerlink" title="🐱‍🐉Base64（最常见的base编码）"></a>🐱‍🐉Base64（最常见的base编码）</h3><ul>
+<li><h4 id="base64编码原理"><a href="#base64编码原理" class="headerlink" title="base64编码原理"></a>base64编码原理</h4><blockquote>
+<p>Base64编码是使用64个可打印ASCII字符<strong>（A-Z、a-z、0-9、+、/）</strong>将任意字节序列数据编码成ASCII字符串，另有“=”符号用作后缀用途。</p>
+</blockquote>
+<p>简单的说 就是 <strong>使用64个可打印字符来表示二进制数据的方法</strong></p>
+<p><strong>base64格式通常以==结尾</strong></p>
+</li>
+<li><h4 id="base64解密"><a href="#base64解密" class="headerlink" title="base64解密"></a>base64解密</h4><p><a target="_blank" rel="noopener" href="https://base64.us/">https://base64.us/</a> 官网在线解密或用工具解密</p>
+<p><img src="https://www.hualigs.cn/image/60e6adad6c52d.jpg"></p>
+</li>
+</ul>
+<h3 id="🐱‍🐉Base32"><a href="#🐱‍🐉Base32" class="headerlink" title="🐱‍🐉Base32"></a>🐱‍🐉Base32</h3><ul>
+<li><h4 id="base32编码原理"><a href="#base32编码原理" class="headerlink" title="base32编码原理"></a>base32编码原理</h4><blockquote>
+<p>Base32编码是使用32个可打印字符<strong>（字母A-Z和数字2-7）</strong></p>
+</blockquote>
+<p>简单的说 就是 <strong>用32（2的5次方）个字符，对二进制数据进行编码的方式</strong></p>
+</li>
+</ul>
+<h2 id="🐕栅栏密码"><a href="#🐕栅栏密码" class="headerlink" title="🐕栅栏密码"></a>🐕栅栏密码</h2><h3 id="传统型"><a href="#传统型" class="headerlink" title="传统型"></a>传统型</h3><h3 id="简介-3"><a href="#简介-3" class="headerlink" title="简介"></a>简介</h3><blockquote>
+<p>所谓栅栏密码，就是把明文分成N个组，然后取出每组的第一个，每组的第二个。接着按顺序排列得出密文。若每个组里有2两个元素的话就叫2栏栅栏密码。</p>
+<p>栅栏密码分为传统型和W型</p>
+</blockquote>
+<h4 id="🤦‍♂️再举个栗子吧"><a href="#🤦‍♂️再举个栗子吧" class="headerlink" title="🤦‍♂️再举个栗子吧"></a>🤦‍♂️再举个栗子吧</h4><h5 id="加密篇"><a href="#加密篇" class="headerlink" title="加密篇"></a>加密篇</h5><p>例如明文为：The girl is beautiful 假设我们分为两栏，一共18个字符，2*9=18</p>
+<p>所以我们分为9组  Th eg ir li sb ea ut if ul</p>
+<p>将每组<strong>第一个元素</strong>提取出来 </p>
+<p>第一组 Teilseuiu</p>
+<p>第二组 hgribatfl</p>
+<p>得到密文为 <strong>Teilseuiuhgribatfl</strong></p>
+<h5 id="解密篇"><a href="#解密篇" class="headerlink" title="解密篇"></a>解密篇</h5><p>例如密文为：Teilseuiuhgribatfl 如果我们分两栏，那么</p>
+<p>第一栏为 Teilseuiu</p>
+<p>第二栏为 hgribatfl</p>
+<p>根据栅栏规则，读取<strong>每一组的第一个</strong></p>
+<p>Th eg ir li sb ea ut if ul</p>
+<p>得到明文为 <strong>Thegirlisbeautiful</strong></p>
+<p>通常用工具梭哈，但还是放出python脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">string = <span class="built_in">input</span>(<span class="string">&quot;输入:&quot;</span>)</span><br><span class="line">frequency = [] <span class="comment"># 获得栅栏的栏数</span></span><br><span class="line">result_len = <span class="built_in">len</span>(string)        <span class="comment"># 栅栏密码的总长度  25</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>, result_len):   <span class="comment"># 最小栅栏长度为2   逐个测试2,3,4....</span></span><br><span class="line">    <span class="keyword">if</span>(result_len % i == <span class="number">0</span>):        <span class="comment"># 当栅栏密码的总长度 模 i 余数为0  则这个i就是栅栏密码的长度</span></span><br><span class="line">        frequency.append(i)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> numberOfColumn <span class="keyword">in</span> frequency:   <span class="comment"># 循环可能分的栏数</span></span><br><span class="line">    RESULT = []                 <span class="comment">#  保存各栏数的结果</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(numberOfColumn):     <span class="comment">#   i : 开始取值的位置</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i, result_len, numberOfColumn):  <span class="comment"># 开始取值， 隔栏数取一个值， 起始位置是i</span></span><br><span class="line">            RESULT.append(string[j])</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;&quot;</span>.join(RESULT))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://www.hualigs.cn/image/60e6d098882bc.jpg"></p>
+<p>选择看起来正常的即可</p>
+<h3 id="🐱‍🐉栅栏密码（W型）"><a href="#🐱‍🐉栅栏密码（W型）" class="headerlink" title="🐱‍🐉栅栏密码（W型）"></a>🐱‍🐉栅栏密码（W型）</h3><h4 id="简介-4"><a href="#简介-4" class="headerlink" title="简介"></a>简介</h4><blockquote>
+<p>W型栅栏密码加密的方法中，明文由上至下顺序写上，当到达最低部时，再回头向上，一直重复直至整篇明文写完为止。</p>
+</blockquote>
+<p><img src="https://www.hualigs.cn/image/60e6d40c96ffb.jpg"></p>
+<p>如上图， 就是在栅栏密码的基础上进行变形，通常用工具进行解密</p>
+<h4 id="🤦‍♂️再再举个栗子吧"><a href="#🤦‍♂️再再举个栗子吧" class="headerlink" title="🤦‍♂️再再举个栗子吧"></a>🤦‍♂️再再举个栗子吧</h4><p>明文：asiabnhasuiiuh</p>
+<p>栏数：3</p>
+<p>贴上在线解密网址：<a target="_blank" rel="noopener" href="http://www.metools.info/code/fence154.html">http://www.metools.info/code/fence154.html</a></p>
+<p><img src="https://www.hualigs.cn/image/60e6d51650422.jpg"></p>
+<p>阿斌帅帅</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">A.bin</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://abinix.top/2021/07/09/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">https://abinix.top/2021/07/09/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://abinix.top" target="_blank">A.binのBlog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/fgf.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2021/06/29/%E8%B0%B7%E6%AD%8C%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><img class="next-cover" src="/img/google.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">谷歌语法学习记录</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">A.bin</div><div class="author-info__description">既然认准了一条路，何必去打听要走多久</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">密码学学习笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%90%95%E5%87%AF%E6%92%92%E5%AF%86%E7%A0%81"><span class="toc-number">1.1.</span> <span class="toc-text">🐕凯撒密码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8E%E5%87%AF%E6%92%92%E7%9A%84%E8%A7%A3%E5%AF%86%EF%BC%8C%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E7%94%A8%E8%84%9A%E6%9C%AC%E4%B9%9F%E5%8F%AF%E4%BB%A5%E7%94%A8%E5%B7%A5%E5%85%B7%EF%BC%8Cpython%E8%84%9A%E6%9C%AC%E5%A6%82%E4%B8%8B%EF%BC%88%E7%BA%AF%E5%AD%97%E6%AF%8D%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">对于凯撒的解密，我们可以用脚本也可以用工具，python脚本如下（纯字母）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%90%95%E5%8F%98%E5%BC%82%E5%87%AF%E6%92%92"><span class="toc-number">1.2.</span> <span class="toc-text">🐕变异凯撒</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A2%E5%8F%AF%E6%89%8B%E6%92%B8%E5%8F%88%E5%8F%AF%E8%84%9A%E6%9C%AC%E8%B7%91-%E4%BB%A5%E4%B8%8B%E4%B8%BA%E6%AD%A4%E9%A2%98%E7%9A%84%E5%8F%98%E5%BC%82%E5%87%AF%E6%92%92%E8%84%9A%E6%9C%AC"><span class="toc-number">1.2.2.</span> <span class="toc-text">既可手撸又可脚本跑  以下为此题的变异凯撒脚本</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%90%95%E7%BB%B4%E5%90%89%E5%B0%BC%E4%BA%9A"><span class="toc-number">1.3.</span> <span class="toc-text">🐕维吉尼亚</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B-2"><span class="toc-number">1.3.1.</span> <span class="toc-text">简介</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E5%AF%86%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">解密方法：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%90%95Base%E5%AE%B6%E6%97%8F"><span class="toc-number">1.4.</span> <span class="toc-text">🐕Base家族</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%90%B1%E2%80%8D%F0%9F%90%89Base62"><span class="toc-number">1.4.1.</span> <span class="toc-text">🐱‍🐉Base62</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#base62%E7%BC%96%E7%A0%81%E5%8E%9F%E7%90%86"><span class="toc-number">1.4.1.1.</span> <span class="toc-text">base62编码原理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%90%B1%E2%80%8D%F0%9F%90%89Base91"><span class="toc-number">1.4.2.</span> <span class="toc-text">🐱‍🐉Base91</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#base91%E7%BC%96%E7%A0%81%E5%8E%9F%E7%90%86"><span class="toc-number">1.4.2.1.</span> <span class="toc-text">base91编码原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Base92%E5%88%99%E6%98%AF-%E6%AF%94base91-%E5%A4%9A%E4%B8%80%E4%B8%AA%E5%AD%97%E7%AC%A6-%E3%80%9C"><span class="toc-number">1.4.2.2.</span> <span class="toc-text">Base92则是 比base91 多一个字符 〜</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%90%B1%E2%80%8D%F0%9F%90%89Base58"><span class="toc-number">1.4.3.</span> <span class="toc-text">🐱‍🐉Base58</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#base58%E7%BC%96%E7%A0%81%E5%8E%9F%E7%90%86"><span class="toc-number">1.4.3.1.</span> <span class="toc-text">base58编码原理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%90%B1%E2%80%8D%F0%9F%90%89Base36"><span class="toc-number">1.4.4.</span> <span class="toc-text">🐱‍🐉Base36</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#base36%E7%BC%96%E7%A0%81%E5%8E%9F%E7%90%86"><span class="toc-number">1.4.4.1.</span> <span class="toc-text">base36编码原理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%90%B1%E2%80%8D%F0%9F%90%89Base16"><span class="toc-number">1.4.5.</span> <span class="toc-text">🐱‍🐉Base16</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#base16%E7%BC%96%E7%A0%81%E5%8E%9F%E7%90%86"><span class="toc-number">1.4.5.1.</span> <span class="toc-text">base16编码原理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%90%B1%E2%80%8D%F0%9F%90%89Base64%EF%BC%88%E6%9C%80%E5%B8%B8%E8%A7%81%E7%9A%84base%E7%BC%96%E7%A0%81%EF%BC%89"><span class="toc-number">1.4.6.</span> <span class="toc-text">🐱‍🐉Base64（最常见的base编码）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#base64%E7%BC%96%E7%A0%81%E5%8E%9F%E7%90%86"><span class="toc-number">1.4.6.1.</span> <span class="toc-text">base64编码原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#base64%E8%A7%A3%E5%AF%86"><span class="toc-number">1.4.6.2.</span> <span class="toc-text">base64解密</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%90%B1%E2%80%8D%F0%9F%90%89Base32"><span class="toc-number">1.4.7.</span> <span class="toc-text">🐱‍🐉Base32</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#base32%E7%BC%96%E7%A0%81%E5%8E%9F%E7%90%86"><span class="toc-number">1.4.7.1.</span> <span class="toc-text">base32编码原理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%90%95%E6%A0%85%E6%A0%8F%E5%AF%86%E7%A0%81"><span class="toc-number">1.5.</span> <span class="toc-text">🐕栅栏密码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%A0%E7%BB%9F%E5%9E%8B"><span class="toc-number">1.5.1.</span> <span class="toc-text">传统型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B-3"><span class="toc-number">1.5.2.</span> <span class="toc-text">简介</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%A4%A6%E2%80%8D%E2%99%82%EF%B8%8F%E5%86%8D%E4%B8%BE%E4%B8%AA%E6%A0%97%E5%AD%90%E5%90%A7"><span class="toc-number">1.5.2.1.</span> <span class="toc-text">🤦‍♂️再举个栗子吧</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8A%A0%E5%AF%86%E7%AF%87"><span class="toc-number">1.5.2.1.1.</span> <span class="toc-text">加密篇</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%A7%A3%E5%AF%86%E7%AF%87"><span class="toc-number">1.5.2.1.2.</span> <span class="toc-text">解密篇</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%90%B1%E2%80%8D%F0%9F%90%89%E6%A0%85%E6%A0%8F%E5%AF%86%E7%A0%81%EF%BC%88W%E5%9E%8B%EF%BC%89"><span class="toc-number">1.5.3.</span> <span class="toc-text">🐱‍🐉栅栏密码（W型）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B-4"><span class="toc-number">1.5.3.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%A4%A6%E2%80%8D%E2%99%82%EF%B8%8F%E5%86%8D%E5%86%8D%E4%B8%BE%E4%B8%AA%E6%A0%97%E5%AD%90%E5%90%A7"><span class="toc-number">1.5.3.2.</span> <span class="toc-text">🤦‍♂️再再举个栗子吧</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/07/09/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="密码学学习笔记"><img src="/img/fgf.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="密码学学习笔记"/></a><div class="content"><a class="title" href="/2021/07/09/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="密码学学习笔记">密码学学习笔记</a><time datetime="2021-07-09T08:46:33.000Z" title="发表于 2021-07-09 16:46:33">2021-07-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/06/29/%E8%B0%B7%E6%AD%8C%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="谷歌语法学习记录"><img src="/img/google.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="谷歌语法学习记录"/></a><div class="content"><a class="title" href="/2021/06/29/%E8%B0%B7%E6%AD%8C%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="谷歌语法学习记录">谷歌语法学习记录</a><time datetime="2021-06-29T07:39:21.000Z" title="发表于 2021-06-29 15:39:21">2021-06-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/19/%E5%85%B3%E4%BA%8ESQL%E6%B3%A8%E5%85%A5/" title="关于SQL注入"><img src="/img/22.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="关于SQL注入"/></a><div class="content"><a class="title" href="/2021/05/19/%E5%85%B3%E4%BA%8ESQL%E6%B3%A8%E5%85%A5/" title="关于SQL注入">关于SQL注入</a><time datetime="2021-05-19T12:29:21.000Z" title="发表于 2021-05-19 20:29:21">2021-05-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/19/SQLmap%E4%BD%BF%E7%94%A8/" title="关于SQLmap"><img src="/img/23.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="关于SQLmap"/></a><div class="content"><a class="title" href="/2021/05/19/SQLmap%E4%BD%BF%E7%94%A8/" title="关于SQLmap">关于SQLmap</a><time datetime="2021-05-19T12:18:19.000Z" title="发表于 2021-05-19 20:18:19">2021-05-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/04/22/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Linux基础指令"><img src="/img/9.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux基础指令"/></a><div class="content"><a class="title" href="/2021/04/22/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Linux基础指令">Linux基础指令</a><time datetime="2021-04-22T10:50:00.000Z" title="发表于 2021-04-22 18:50:00">2021-04-22</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020/4/21 - 2021 By A.bin</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
