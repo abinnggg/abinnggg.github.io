@@ -1,0 +1,325 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>RSA学习笔记 | A.binのBlog</title><meta name="keywords" content="-CTF"><meta name="author" content="A.bin"><meta name="copyright" content="A.bin"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="RSA学习笔记    首先引用一张神图！不会就来看看 说实话，rsa一把梭就行，有脚本就是哥，毕竟高数我们学的少，也很难理解 所以，梭就完事了 简介RSA RSA是一种非对称加密;RSA是一种公认的非常安全的公钥加密方式，我们长见的SSL协议采用的加密方式就是RSA非对称加密；RSA加密使用公钥，解密使用私钥，所以是非对称加密，公钥可由私钥生成。   选择两个大的参数，计算出模数 N &#x3D; p *">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RSA学习笔记">
+<meta property="og:url" content="https://abinix.top/2021/07/31/RSA%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="A.binのBlog">
+<meta property="og:description" content="RSA学习笔记    首先引用一张神图！不会就来看看 说实话，rsa一把梭就行，有脚本就是哥，毕竟高数我们学的少，也很难理解 所以，梭就完事了 简介RSA RSA是一种非对称加密;RSA是一种公认的非常安全的公钥加密方式，我们长见的SSL协议采用的加密方式就是RSA非对称加密；RSA加密使用公钥，解密使用私钥，所以是非对称加密，公钥可由私钥生成。   选择两个大的参数，计算出模数 N &#x3D; p *">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://abinix.top/img/11.jpg">
+<meta property="article:published_time" content="2021-07-30T16:00:19.000Z">
+<meta property="article:modified_time" content="2021-07-29T16:23:15.562Z">
+<meta property="article:author" content="A.bin">
+<meta property="article:tag" content="-CTF">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://abinix.top/img/11.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://abinix.top/2021/07/31/RSA%E7%AC%94%E8%AE%B0/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-07-30 00:23:15'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><link rel="stylesheet" href="/css/11.css"><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="A.binのBlog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/fgf.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">A.binのBlog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">RSA学习笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-07-30T16:00:19.000Z" title="发表于 2021-07-31 00:00:19">2021-07-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-07-29T16:23:15.562Z" title="更新于 2021-07-30 00:23:15">2021-07-30</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>11分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="RSA学习笔记"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 align = "center">RSA学习笔记</h1>
+
+
+
+<h2 id="首先引用一张神图！不会就来看看"><a href="#首先引用一张神图！不会就来看看" class="headerlink" title="首先引用一张神图！不会就来看看"></a>首先引用一张神图！不会就来看看</h2><p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20210723085330.png"></p>
+<p>说实话，rsa一把梭就行，有脚本就是哥，毕竟高数我们学的少，也很难理解</p>
+<p>所以，梭就完事了</p>
+<h2 id="简介RSA"><a href="#简介RSA" class="headerlink" title="简介RSA"></a>简介RSA</h2><blockquote>
+<p>RSA是一种非对称加密;RSA是一种公认的非常安全的公钥加密方式，我们长见的SSL协议采用的加密方式就是RSA非对称加密；RSA加密使用公钥，解密使用私钥，所以是非对称加密，公钥可由私钥生成。</p>
+</blockquote>
+<ul>
+<li><p>选择两个大的参数，计算出模数 N = p * q</p>
+</li>
+<li><p>计算欧拉函数 φ = (p-1) * (q-1)，然后选择一个e(1&lt;e&lt;φ)，并且e和φ互质（互质：公约数只有1的两个整数）</p>
+</li>
+<li><p>取e的模反数d，计算方法为:e * d ≡ 1 (mod φ) （模反元素：如果两个正整数e和n互质，那么一定可以找到整数d，使得 e * d - 1 被n整除，或者说e * d被n除的余数是1。这时，d就叫做e的“模反元素”。欧拉定理可以用来证明模反元素必然存在。两个整数a,b，它们除以整数M所得的余数相等：a ≡ b(mod m)，比如说5除3余数为2，11除3余数也为2，于是可写成11 ≡ 5(mod 3)。）</p>
+</li>
+<li><p><strong>“≡”是数论中表示同余的符号</strong> 以上的理论也可以这么理解：</p>
+<p>给定一个正整数m，如果两个整数a和b满足a - b能被m整除，即(a - b)modm=0，<br>那么就称<strong>整数a与b对模m同余</strong>，记作a ≡ b ( mod m)，同时可成立<strong>a mod m = b</strong><br>注意，同余与模运算是不同的<br>显然,有如下事实</p>
+<p>（1）若a≡0(mod m)，则m|a；<br>（2）a≡b(mod m)等价于a与b分别用m去除，余数相同。</p>
+</li>
+<li><p>对明文m进行加密：c = pow(m, e, N),可以得到密文c。</p>
+</li>
+<li><p>对密文c进行解密：m = pow(c, d, N),可以得到明文m。</p>
+</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<li>p 和 q：两个大的质数，是另一个参数N的的两个因子。</li>
+<li>N：大整数，可以称之为模数</li>
+<li>e 和 d：互为无反数的两个指数 ，e为公钥，d为私钥</li>
+<li>c 和 m：密文和明文</li>
+<li>(N, e)：公钥</li>
+<li>(N, d)：私钥</li>
+<li>pow(x, y, z)：效果等效pow(x, y)1 % z， 先计算x的y次方，如果存在另一个参数z，需要再对结果进行取模。</li>
+<li>密钥长度：n以二进制表示的的位数，例如密钥长度为512代表n用二进制表示的长度为512bit。1</li>
+</ol>
+<h2 id="关于n的分解"><a href="#关于n的分解" class="headerlink" title="关于n的分解"></a>关于n的分解</h2><p>有些题目中只给一个n，这时我们需要利用工具解出p，q</p>
+<p><strong>当n很小时</strong> 我们可以通过在线网站 <a target="_blank" rel="noopener" href="http://factordb.com/">http://factordb.com/</a></p>
+<p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20210723085021.png"></p>
+<p><strong>当n很大时</strong>，在线工具并不能解出</p>
+<p>下载 yafu工具 <a target="_blank" rel="noopener" href="https://sourceforge.net/projects/yafu/">https://sourceforge.net/projects/yafu/</a>  下载完成后cmd进入当前目录下</p>
+<p>输入命令 <code>.\yafu-x64.exe</code> 进入exe文件</p>
+<p>命令为 <code>factor(需要分解的大数)</code></p>
+<p>如下图，成功分解</p>
+<p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20210723084908.png"></p>
+<h2 id="RSA分类"><a href="#RSA分类" class="headerlink" title="RSA分类"></a>RSA分类</h2><h3 id="已知e-p-q求d"><a href="#已知e-p-q求d" class="headerlink" title="已知e,p,q求d"></a>已知e,p,q求d</h3><p>脚本如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line">p = <span class="number">38456719616722997</span></span><br><span class="line">q = <span class="number">44106885765559411</span></span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line"> </span><br><span class="line">s = (p-<span class="number">1</span>)*(q-<span class="number">1</span>)</span><br><span class="line">d = gmpy2.invert(e,s)</span><br><span class="line"><span class="built_in">print</span> (<span class="string">&quot;dec: &quot;</span> + <span class="built_in">str</span>(d))</span><br><span class="line"><span class="built_in">print</span> (<span class="string">&quot;hex: &quot;</span> +  <span class="built_in">hex</span>(d))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="已知e，p，q，c-求明文"><a href="#已知e，p，q，c-求明文" class="headerlink" title="已知e，p，q，c 求明文"></a>已知e，p，q，c 求明文</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2 <span class="keyword">as</span> gp</span><br><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line">p =  gp.mpz()</span><br><span class="line">q =  gp.mpz()</span><br><span class="line">e =  gp.mpz()</span><br><span class="line">c =  gp.mpz()</span><br><span class="line">n = p*q</span><br><span class="line">phi = (p-<span class="number">1</span>) * (q-<span class="number">1</span>)</span><br><span class="line">d = gp.invert(e, phi)</span><br><span class="line">m = <span class="built_in">pow</span>(c, d, n)</span><br><span class="line"><span class="built_in">print</span>(m)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="已知e-d-n求p-q"><a href="#已知e-d-n求p-q" class="headerlink" title="已知e,d,n求p,q"></a>已知e,d,n求p,q</h3><p>脚本如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gcd</span>(<span class="params">a, b</span>):</span></span><br><span class="line">    <span class="keyword">if</span> a &lt; b:</span><br><span class="line">        a, b = b, a</span><br><span class="line">    <span class="keyword">while</span> b != <span class="number">0</span>:</span><br><span class="line">        temp = a % b</span><br><span class="line">        a = b</span><br><span class="line">        b = temp</span><br><span class="line">    <span class="keyword">return</span> a</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getpq</span>(<span class="params">n, e, d</span>):</span></span><br><span class="line">    p = <span class="number">1</span></span><br><span class="line">    q = <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> p == <span class="number">1</span> <span class="keyword">and</span> q == <span class="number">1</span>:</span><br><span class="line">        k = d * e - <span class="number">1</span></span><br><span class="line">        g = random.randint(<span class="number">0</span>, n)</span><br><span class="line">        <span class="keyword">while</span> p == <span class="number">1</span> <span class="keyword">and</span> q == <span class="number">1</span> <span class="keyword">and</span> k % <span class="number">2</span> == <span class="number">0</span>:</span><br><span class="line">            k /= <span class="number">2</span></span><br><span class="line">            y = <span class="built_in">pow</span>(g, k, n)</span><br><span class="line">            <span class="keyword">if</span> y != <span class="number">1</span> <span class="keyword">and</span> gcd(y - <span class="number">1</span>, n) &gt; <span class="number">1</span>:</span><br><span class="line">                p = gcd(y - <span class="number">1</span>, n)</span><br><span class="line">                q = n / p</span><br><span class="line">        <span class="keyword">return</span> p, q</span><br><span class="line"></span><br><span class="line">n = 0x</span><br><span class="line">e = <span class="number">0x10001</span></span><br><span class="line">d = 0x</span><br><span class="line">p, q = getpq(n, e, d)</span><br><span class="line"><span class="built_in">print</span> <span class="string">&quot;p: &quot;</span> + <span class="built_in">hex</span>(p)</span><br><span class="line"><span class="built_in">print</span> <span class="string">&quot;q: &quot;</span> + <span class="built_in">hex</span>(q)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="已知n-e求秘钥d"><a href="#已知n-e求秘钥d" class="headerlink" title="已知n,e求秘钥d"></a>已知n,e求秘钥d</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"><span class="keyword">from</span> Crypto.Util <span class="keyword">import</span> number</span><br><span class="line">p = <span class="number">473398607161</span></span><br><span class="line">q = <span class="number">4511491</span></span><br><span class="line">e = <span class="number">17</span></span><br><span class="line">d = gmpy2.invert(e,(p-<span class="number">1</span>)*(q-<span class="number">1</span>))</span><br><span class="line"><span class="built_in">print</span> (d)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="低指数加密（e-1）"><a href="#低指数加密（e-1）" class="headerlink" title="低指数加密（e=1）"></a>低指数加密（e=1）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#/usr/bin/env python3</span></span><br><span class="line"><span class="comment">#coding:utf-8</span></span><br><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line">N_hex=0x</span><br><span class="line">e_hex=<span class="number">0x1</span></span><br><span class="line">c_hex=0x</span><br><span class="line">c_hex = gmpy2.mpz(c_hex)</span><br><span class="line">N_hex = gmpy2.mpz(N_hex)</span><br><span class="line"></span><br><span class="line">i = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> i&lt;<span class="number">10</span>:</span><br><span class="line">    m_hex = <span class="built_in">hex</span>(c_hex + gmpy2.mpz(<span class="built_in">hex</span>(i))*N_hex)</span><br><span class="line">    <span class="built_in">print</span>(m_hex[<span class="number">2</span>:])</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="built_in">print</span>(binascii.a2b_hex(m_hex[<span class="number">2</span>:]).decode(<span class="string">&quot;utf8&quot;</span>))</span><br><span class="line">    <span class="keyword">except</span> binascii.Error <span class="keyword">as</span> e:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;位数非偶数，跳过...&quot;</span>)</span><br><span class="line">    i += <span class="number">1</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="低指数加密（e-2）"><a href="#低指数加密（e-2）" class="headerlink" title="低指数加密（e=2）"></a>低指数加密（e=2）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="comment"># 适合e=2</span></span><br><span class="line"><span class="keyword">import</span> gmpy</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"><span class="keyword">from</span> Crypto.PublicKey <span class="keyword">import</span> RSA</span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取公钥参数</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;./tmp/pubkey.pem&#x27;</span>, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    key = RSA.importKey(f)</span><br><span class="line">    N = key.n</span><br><span class="line">    e = key.e</span><br><span class="line">    </span><br><span class="line">p = <span class="number">275127860351348928173285174381581152299</span></span><br><span class="line">q = <span class="number">319576316814478949870590164193048041239</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;./tmp/flag.enc&#x27;</span>, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    cipher = f.read().encode(<span class="string">&#x27;hex&#x27;</span>)</span><br><span class="line">    cipher = string.atoi(cipher, base=<span class="number">16</span>)</span><br><span class="line">    <span class="comment"># print cipher</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算yp和yq</span></span><br><span class="line">yp = gmpy.invert(p,q)</span><br><span class="line">yq = gmpy.invert(q,p)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算mp和mq</span></span><br><span class="line">mp = <span class="built_in">pow</span>(cipher, (p + <span class="number">1</span>) / <span class="number">4</span>, p)</span><br><span class="line">mq = <span class="built_in">pow</span>(cipher, (q + <span class="number">1</span>) / <span class="number">4</span>, q)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算a,b,c,d</span></span><br><span class="line">a = (yp * p * mq + yq * q * mp) % N</span><br><span class="line">b = N - <span class="built_in">int</span>(a)</span><br><span class="line">c = (yp * p * mq - yq * q * mp) % N</span><br><span class="line">d = N - <span class="built_in">int</span>(c)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> (a,b,c,d):</span><br><span class="line">    s = <span class="string">&#x27;%x&#x27;</span> % i</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(s) % <span class="number">2</span> != <span class="number">0</span>:</span><br><span class="line">        s = <span class="string">&#x27;0&#x27;</span> + s</span><br><span class="line">    <span class="built_in">print</span> s.decode(<span class="string">&#x27;hex&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="e-3小指数明文攻击"><a href="#e-3小指数明文攻击" class="headerlink" title="e=3小指数明文攻击"></a>e=3小指数明文攻击</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> iroot</span><br><span class="line"><span class="keyword">import</span> libnum</span><br><span class="line">n = </span><br><span class="line"></span><br><span class="line">c = </span><br><span class="line"></span><br><span class="line">k = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">    res=iroot(c+k*n,<span class="number">3</span>)</span><br><span class="line">    <span class="keyword">if</span>(res[<span class="number">1</span>]==<span class="literal">True</span>):</span><br><span class="line">        <span class="built_in">print</span>(libnum.n2s(<span class="built_in">int</span>(res[<span class="number">0</span>])))</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    k=k+<span class="number">1</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="已知n-e-c求m"><a href="#已知n-e-c求m" class="headerlink" title="已知n,e,c求m"></a>已知n,e,c求m</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Decrypt</span>(<span class="params">c,e,p,q</span>):</span></span><br><span class="line">	L=(p-<span class="number">1</span>)*(q-<span class="number">1</span>)</span><br><span class="line">	d=gmpy2.invert(e,L)</span><br><span class="line">	n=p*q</span><br><span class="line">	m=gmpy2.powmod(c,d,n)</span><br><span class="line">	flag=<span class="built_in">str</span>(m)</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">&quot;flag&#123;&quot;</span>+flag+<span class="string">&quot;&#125;&quot;</span>)</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">	p = </span><br><span class="line">	q = </span><br><span class="line">	e =  <span class="number">65537</span></span><br><span class="line">	c = </span><br><span class="line">	Decrypt(c,e,p,q)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="已知e，n，dp，c-求明文"><a href="#已知e，n，dp，c-求明文" class="headerlink" title="已知e，n，dp，c 求明文"></a>已知e，n，dp，c 求明文</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2 <span class="keyword">as</span> gpe = n = gp.mpz()dp = gp.mpz()c = gp.mpz()<span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, e):    <span class="keyword">if</span>(e*dp%x==<span class="number">1</span>):        p=(e*dp-<span class="number">1</span>)//x+<span class="number">1</span>        <span class="keyword">if</span>(n%p!=<span class="number">0</span>):            <span class="keyword">continue</span>        q=n//p        phin=(p-<span class="number">1</span>)*(q-<span class="number">1</span>)        d=gp.invert(e, phin)        m=gp.powmod(c, d, n)        <span class="keyword">if</span>(<span class="built_in">len</span>(<span class="built_in">hex</span>(m)[<span class="number">2</span>:])%<span class="number">2</span>==<span class="number">1</span>):            <span class="keyword">continue</span>        <span class="built_in">print</span>(<span class="string">&#x27;--------------&#x27;</span>)        <span class="built_in">print</span>(m)        <span class="built_in">print</span>(<span class="built_in">hex</span>(m)[<span class="number">2</span>:])        <span class="built_in">print</span>(<span class="built_in">bytes</span>.fromhex(<span class="built_in">hex</span>(m)[<span class="number">2</span>:]))</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="由p-q-dp-dq-c求明文的算法"><a href="#由p-q-dp-dq-c求明文的算法" class="headerlink" title="由p,q,dp,dq,c求明文的算法"></a>由p,q,dp,dq,c求明文的算法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2 <span class="keyword">as</span> gpp = gp.mpz()q = gp.mpz()dp = gp.mpz()dq = gp.mpz()c = gp.mpz()n = p*qphin = (p-<span class="number">1</span>)*(q-<span class="number">1</span>)dd = gp.gcd(p-<span class="number">1</span>, q-<span class="number">1</span>)d=(dp-dq)//dd * gp.invert((q-<span class="number">1</span>)//dd, (p-<span class="number">1</span>)//dd) * (q-<span class="number">1</span>) +dqprint(d)m = gp.powmod(c, d, n)<span class="built_in">print</span>(<span class="string">&#x27;-------------------&#x27;</span>)<span class="built_in">print</span>(m)<span class="built_in">print</span>(<span class="built_in">hex</span>(m)[<span class="number">2</span>:])</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="低解密指数攻击（e较大）"><a href="#低解密指数攻击（e较大）" class="headerlink" title="低解密指数攻击（e较大）"></a>低解密指数攻击（e较大）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>  RSAwienerHackern=e=d =  RSAwienerHacker.hack_RSA(e,n)<span class="keyword">if</span> d:    <span class="built_in">print</span>(d)<span class="keyword">import</span> hashlibflag = <span class="string">&quot;flag&#123;&quot;</span> + hashlib.md5(<span class="built_in">hex</span>(d)).hexdigest() + <span class="string">&quot;&#125;&quot;</span><span class="built_in">print</span> flag</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="Wiener’s-attack"><a href="#Wiener’s-attack" class="headerlink" title="Wiener’s attack"></a>Wiener’s attack</h3><p>例题：</p>
+<p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20210724172910.png"></p>
+<p><strong>当e很大，d就会尽可能的小</strong>，就会满足Wiener’s attack的条件</p>
+<p>脚本如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2def transform(x,y):       <span class="comment">#使用辗转相处将分数 x/y 转为连分数的形式    res=[]    while y:        res.append(x//y)        x,y=y,x%y    return res    def continued_fraction(sub_res):    numerator,denominator=1,0    for i in sub_res[::-1]:      #从sublist的后面往前循环        denominator,numerator=numerator,i*numerator+denominator    return denominator,numerator   #得到渐进分数的分母和分子，并返回    #求解每个渐进分数def sub_fraction(x,y):    res=transform(x,y)    res=list(map(continued_fraction,(res[0:i] for i in range(1,len(res)))))  #将连分数的结果逐一截取以求渐进分数    return resdef get_pq(a,b,c):      #由p+q和pq的值通过维达定理来求解p和q    par=gmpy2.isqrt(b*b-4*a*c)   #由上述可得，开根号一定是整数，因为有解    x1,x2=(-b+par)//(2*a),(-b-par)//(2*a)    return x1,x2def wienerAttack(e,n):    for (d,k) in sub_fraction(e,n):  #用一个for循环来注意试探e/n的连续函数的渐进分数，直到找到一个满足条件的渐进分数        if k==0:                     #可能会出现连分数的第一个为0的情况，排除            continue        if (e*d-1)%k!=0:             #ed=1 (mod φ(n)) 因此如果找到了d的话，(ed-1)会整除φ(n),也就是存在k使得(e*d-1)//k=φ(n)            continue                phi=(e*d-1)//k               #这个结果就是 φ(n)        px,qy=get_pq(1,n-phi+1,n)        if px*qy==n:            p,q=abs(int(px)),abs(int(qy))     #可能会得到两个负数，负负得正未尝不会出现            d=gmpy2.invert(e,(p-1)*(q-1))     #求ed=1 (mod  φ(n))的结果，也就是e关于 φ(n)的乘法逆元d            return d    print(&quot;该方法不适用&quot;)        e = 14058695417015334071588010346586749790539913287499707802938898719199384604316115908373997739604466972535533733290829894940306314501336291780396644520926473n = 33608051123287760315508423639768587307044110783252538766412788814888567164438282747809126528707329215122915093543085008547092423658991866313471837522758159d=wienerAttack(e,n)print(&quot;d=&quot;,d)</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="共模攻击（n，m相同，c，e不同）"><a href="#共模攻击（n，m相同，c，e不同）" class="headerlink" title="共模攻击（n，m相同，c，e不同）"></a>共模攻击（n，m相同，c，e不同）</h3><p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20210724173249.png"></p>
+<p>生成秘钥的过程中使用了相同的模数n，此时用不同的秘钥e加密同一信息m即：</p>
+<blockquote>
+<p>c1 = m^e1 % n </p>
+<p>c2 = m^e2 % n</p>
+</blockquote>
+<p>脚本如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> invert<span class="comment"># 欧几里得算法def egcd(a, b):  if a == 0:    return (b, 0, 1)  else:    g, y, x = egcd(b % a, a)    return (g, x - (b // a) * y, y)def main():  n =   c1 =   c2 =   e1 =   e2 =   s = egcd(e1, e2)  s1 = s[1]  s2 = s[2]  # 求模反元素  if s1&lt;0:    s1 = - s1    c1 = invert(c1, n)  elif s2&lt;0:    s2 = - s2    c2 = invert(c2, n)  m = pow(c1,s1,n)*pow(c2,s2,n) % n  print(m)if __name__ == &#x27;__main__&#x27;:  main()</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="e，m相同，存在两个n有公约数"><a href="#e，m相同，存在两个n有公约数" class="headerlink" title="e，m相同，存在两个n有公约数"></a>e，m相同，存在两个n有公约数</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2from gmpy2 <span class="keyword">import</span> invert, irootimport gmpy2 <span class="keyword">as</span> gpfrom libnum <span class="keyword">import</span> xgcd, invmodn=[,,,,,,,,,,,,,,,,,,,]<span class="keyword">for</span> i <span class="keyword">in</span> n:    <span class="keyword">for</span> j <span class="keyword">in</span> n:        <span class="keyword">if</span> (i&lt;&gt;j):            pub_p=gmpy2.gcdext(i,j)            <span class="keyword">if</span> (pub_p[<span class="number">0</span>]&lt;&gt;<span class="number">1</span>)&amp;(i&gt;j):                <span class="built_in">print</span> i                <span class="built_in">print</span> j                <span class="built_in">print</span> pub_p[<span class="number">0</span>]                a=i,p=pub_p[<span class="number">0</span>]q=a/pp =  gp.mpz()q =  gp.mpz()e =  gp.mpz()c =  gp.mpz()n = p*qphi = (p-<span class="number">1</span>) * (q-<span class="number">1</span>)d = gp.invert(e, phi)m = <span class="built_in">pow</span>(c, d, n)<span class="built_in">print</span> <span class="built_in">hex</span>(m)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="BUUCTF-RSA"><a href="#BUUCTF-RSA" class="headerlink" title="BUUCTF RSA"></a>BUUCTF RSA</h2><ul>
+<li>题目如下，这题是超级无敌简单了</li>
+</ul>
+<p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20210723085132.png"></p>
+<ul>
+<li><p>我们根据rsa原理，e是公钥，d是私钥，并且d是e的反模数</p>
+<p>计算公式如下：e * d ≡ 1 (mod φ)</p>
+</li>
+<li><p>写个python脚本</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2p=473398607161q=4511491e=17d=gmpy2.invert(e,(q-<span class="number">1</span>)*(p-<span class="number">1</span>))<span class="built_in">print</span> (d)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20210722161235.png"></p>
+<p>得到flag{125631357777427553}</p>
+<h2 id="BUUCTF-RSA3"><a href="#BUUCTF-RSA3" class="headerlink" title="BUUCTF RSA3"></a>BUUCTF RSA3</h2><ul>
+<li>下载题目后仔细观察，发现有c1，有n，有c2，有e2，有e1，考虑共模攻击</li>
+</ul>
+<p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20210723084744.png"></p>
+<ul>
+<li><p>采用上面<strong>共模攻击</strong>的脚本</p>
+<p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20210722165358.png"></p>
+</li>
+</ul>
+<p>解出13040004482819947212936436796507286940525898188874967465457845309271472287032383337801279101</p>
+<ul>
+<li><p>十进制转十六进制，再将十六进制转文本即可</p>
+<p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20210722165924.png"></p>
+</li>
+<li><p>将十六进制转为字符，得到flag</p>
+</li>
+</ul>
+<p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20210722165941.png"></p>
+<p>flag{49d91077a1abcb14f1a9d546c80be9ef}</p>
+<h2 id="BUUCTF-RSA2"><a href="#BUUCTF-RSA2" class="headerlink" title="BUUCTF RSA2"></a>BUUCTF RSA2</h2><p>题目如下</p>
+<p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20210724234710.png"></p>
+<p>有dp，应该是dp泄露，用上面的脚本爆就完事了</p>
+<p>如下图</p>
+<p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20210724234922.png"></p>
+<p>得到flag{wow_leaking_dp_breaks_rsa?_98924743502}</p>
+<h2 id="BUUCTF-Dangerous-RSA"><a href="#BUUCTF-Dangerous-RSA" class="headerlink" title="BUUCTF Dangerous RSA"></a>BUUCTF Dangerous RSA</h2><p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20210724213705.png"></p>
+<p>查看题目后发现e为3，是小指数明文攻击</p>
+<p>所以采用脚本e=3小指数解密</p>
+<p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20210724213951.png"></p>
+<p>得到flag{25df8caf006ee5db94d48144c33b2c3b}</p>
+<h2 id="BUUCTF-GUETCTF2019-BabyRSA"><a href="#BUUCTF-GUETCTF2019-BabyRSA" class="headerlink" title="BUUCTF [GUETCTF2019]BabyRSA"></a>BUUCTF [GUETCTF2019]BabyRSA</h2><p>题目如下</p>
+<p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20210724214223.png"></p>
+<p>观察题目给的条件，给了p+q，（p+1)(q+1)，e，d,以及密文C.<br>RSA的解密公式：M=C^d mod n<br>所以我们只要求出n即可。(n = pq)<br>n = (p+1)(q+1) - (p+q) - 1<br>即可解出明文m</p>
+<p>脚本：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> libnuma = <span class="number">0x1232fecb92adead91613e7d9ae5e36fe6bb765317d6ed38ad890b4073539a6231a6620584cea5730b5af83a3e80cf30141282c97be4400e33307573af6b25e2eab</span> = <span class="number">0x5248becef1d925d45705a7302700d6a0ffe5877fddf9451a9c1181c4d82365806085fd86fbaab08b6fc66a967b2566d743c626547203b34ea3fdb1bc06dd3bb765fd8b919e3bd2cb15bc175c9498f9d9a0e216c2dde64d81255fa4c05a1ee619fc1fc505285a239e7bc655ec6605d9693078b800ee80931a7a0c84f33c851740e</span> = <span class="number">0xe6b1bee47bd63f615c7d0a43c529d219d</span> = <span class="number">0x2dde7fbaed477f6d62838d55b0d0964868cf6efb2c282a5f13e6008ce7317a24cb57aec49ef0d738919f47cdcd9677cd52ac2293ec5938aa198f962678b5cd0da344453f521a69b2ac03647cdd8339f4e38cec452d54e60698833d67f9315c02ddaa4c79ebaa902c605d7bda32ce970541b2d9a17d62b52df813b2fb0c5ab1a5c</span>= 0x50ae00623211ba6089ddfae21e204ab616f6c9d294e913550af3d66e85d0c0693ed53ed55c46d8cca1d7c2ad44839030df26b70f22a8567171a759b76fe5f07b3c5a6ec89117ed0a36c0950956b9cde880c575737f779143f921d745ac3bb0e379c05d9a3cc6bf0bea8aa91e4d5e752c7eb46b2e023edbc07d24a7c460a34a9an = b-a-1m = <span class="built_in">pow</span>(c,d,n)<span class="built_in">print</span>(libnum.n2s(m))  <span class="comment">#（n2s将数值转化为字符串）</span></span><br></pre></td></tr></table></figure>
+
+<p>如下图</p>
+<p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20210724214454.png"></p>
+<p>即可得到 flag{cc7490e-78ab-11e9-b422-8ba97e5da1fd}</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">A.bin</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://abinix.top/2021/07/31/RSA%E7%AC%94%E8%AE%B0/">https://abinix.top/2021/07/31/RSA%E7%AC%94%E8%AE%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://abinix.top" target="_blank">A.binのBlog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/CTF/">-CTF</a></div><div class="post_share"><div class="social-share" data-image="/img/11.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2021/07/31/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><img class="next-cover" src="/img/30.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">upload-labs笔记</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">A.bin</div><div class="author-info__description">既然认准了一条路，何必去打听要走多久</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">RSA学习笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A6%96%E5%85%88%E5%BC%95%E7%94%A8%E4%B8%80%E5%BC%A0%E7%A5%9E%E5%9B%BE%EF%BC%81%E4%B8%8D%E4%BC%9A%E5%B0%B1%E6%9D%A5%E7%9C%8B%E7%9C%8B"><span class="toc-number">1.1.</span> <span class="toc-text">首先引用一张神图！不会就来看看</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8BRSA"><span class="toc-number">1.2.</span> <span class="toc-text">简介RSA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.3.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8En%E7%9A%84%E5%88%86%E8%A7%A3"><span class="toc-number">1.4.</span> <span class="toc-text">关于n的分解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RSA%E5%88%86%E7%B1%BB"><span class="toc-number">1.5.</span> <span class="toc-text">RSA分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%B2%E7%9F%A5e-p-q%E6%B1%82d"><span class="toc-number">1.5.1.</span> <span class="toc-text">已知e,p,q求d</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%B2%E7%9F%A5e%EF%BC%8Cp%EF%BC%8Cq%EF%BC%8Cc-%E6%B1%82%E6%98%8E%E6%96%87"><span class="toc-number">1.5.2.</span> <span class="toc-text">已知e，p，q，c 求明文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%B2%E7%9F%A5e-d-n%E6%B1%82p-q"><span class="toc-number">1.5.3.</span> <span class="toc-text">已知e,d,n求p,q</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%B2%E7%9F%A5n-e%E6%B1%82%E7%A7%98%E9%92%A5d"><span class="toc-number">1.5.4.</span> <span class="toc-text">已知n,e求秘钥d</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%8E%E6%8C%87%E6%95%B0%E5%8A%A0%E5%AF%86%EF%BC%88e-1%EF%BC%89"><span class="toc-number">1.5.5.</span> <span class="toc-text">低指数加密（e&#x3D;1）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%8E%E6%8C%87%E6%95%B0%E5%8A%A0%E5%AF%86%EF%BC%88e-2%EF%BC%89"><span class="toc-number">1.5.6.</span> <span class="toc-text">低指数加密（e&#x3D;2）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e-3%E5%B0%8F%E6%8C%87%E6%95%B0%E6%98%8E%E6%96%87%E6%94%BB%E5%87%BB"><span class="toc-number">1.5.7.</span> <span class="toc-text">e&#x3D;3小指数明文攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%B2%E7%9F%A5n-e-c%E6%B1%82m"><span class="toc-number">1.5.8.</span> <span class="toc-text">已知n,e,c求m</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%B2%E7%9F%A5e%EF%BC%8Cn%EF%BC%8Cdp%EF%BC%8Cc-%E6%B1%82%E6%98%8E%E6%96%87"><span class="toc-number">1.5.9.</span> <span class="toc-text">已知e，n，dp，c 求明文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%B1p-q-dp-dq-c%E6%B1%82%E6%98%8E%E6%96%87%E7%9A%84%E7%AE%97%E6%B3%95"><span class="toc-number">1.5.10.</span> <span class="toc-text">由p,q,dp,dq,c求明文的算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%8E%E8%A7%A3%E5%AF%86%E6%8C%87%E6%95%B0%E6%94%BB%E5%87%BB%EF%BC%88e%E8%BE%83%E5%A4%A7%EF%BC%89"><span class="toc-number">1.5.11.</span> <span class="toc-text">低解密指数攻击（e较大）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Wiener%E2%80%99s-attack"><span class="toc-number">1.5.12.</span> <span class="toc-text">Wiener’s attack</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B1%E6%A8%A1%E6%94%BB%E5%87%BB%EF%BC%88n%EF%BC%8Cm%E7%9B%B8%E5%90%8C%EF%BC%8Cc%EF%BC%8Ce%E4%B8%8D%E5%90%8C%EF%BC%89"><span class="toc-number">1.5.13.</span> <span class="toc-text">共模攻击（n，m相同，c，e不同）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e%EF%BC%8Cm%E7%9B%B8%E5%90%8C%EF%BC%8C%E5%AD%98%E5%9C%A8%E4%B8%A4%E4%B8%AAn%E6%9C%89%E5%85%AC%E7%BA%A6%E6%95%B0"><span class="toc-number">1.5.14.</span> <span class="toc-text">e，m相同，存在两个n有公约数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BUUCTF-RSA"><span class="toc-number">1.6.</span> <span class="toc-text">BUUCTF RSA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BUUCTF-RSA3"><span class="toc-number">1.7.</span> <span class="toc-text">BUUCTF RSA3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BUUCTF-RSA2"><span class="toc-number">1.8.</span> <span class="toc-text">BUUCTF RSA2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BUUCTF-Dangerous-RSA"><span class="toc-number">1.9.</span> <span class="toc-text">BUUCTF Dangerous RSA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BUUCTF-GUETCTF2019-BabyRSA"><span class="toc-number">1.10.</span> <span class="toc-text">BUUCTF [GUETCTF2019]BabyRSA</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/07/31/RSA%E7%AC%94%E8%AE%B0/" title="RSA学习笔记"><img src="/img/11.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="RSA学习笔记"/></a><div class="content"><a class="title" href="/2021/07/31/RSA%E7%AC%94%E8%AE%B0/" title="RSA学习笔记">RSA学习笔记</a><time datetime="2021-07-30T16:00:19.000Z" title="发表于 2021-07-31 00:00:19">2021-07-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/07/31/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="upload-labs笔记"><img src="/img/30.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="upload-labs笔记"/></a><div class="content"><a class="title" href="/2021/07/31/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="upload-labs笔记">upload-labs笔记</a><time datetime="2021-07-30T16:00:19.000Z" title="发表于 2021-07-31 00:00:19">2021-07-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/07/17/MISC%E7%AC%94%E8%AE%B0/" title="Misc学习笔记"><img src="/img/40.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Misc学习笔记"/></a><div class="content"><a class="title" href="/2021/07/17/MISC%E7%AC%94%E8%AE%B0/" title="Misc学习笔记">Misc学习笔记</a><time datetime="2021-07-17T13:11:34.000Z" title="发表于 2021-07-17 21:11:34">2021-07-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/07/09/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="密码学学习笔记"><img src="/img/fgf.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="密码学学习笔记"/></a><div class="content"><a class="title" href="/2021/07/09/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="密码学学习笔记">密码学学习笔记</a><time datetime="2021-07-09T08:46:33.000Z" title="发表于 2021-07-09 16:46:33">2021-07-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/06/29/%E8%B0%B7%E6%AD%8C%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="谷歌语法学习记录"><img src="/img/google.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="谷歌语法学习记录"/></a><div class="content"><a class="title" href="/2021/06/29/%E8%B0%B7%E6%AD%8C%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="谷歌语法学习记录">谷歌语法学习记录</a><time datetime="2021-06-29T07:39:21.000Z" title="发表于 2021-06-29 15:39:21">2021-06-29</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020/4/21 - 2021 By A.bin</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
