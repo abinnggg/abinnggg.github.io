@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.abinix.top/2022/01/18/Redteam%E9%9D%B6%E5%9C%BA%E6%B8%97%E9%80%8F/</loc>
+    
+    <lastmod>2022-01-17</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.abinix.top/2022/01/18/ATT&CK%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0%E5%AE%9E%E6%88%98%E9%9D%B6%E5%9C%BA%E5%9B%9B/</loc>
+    
+    <lastmod>2022-01-17</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.abinix.top/2021/10/13/XSS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
     
     <lastmod>2021-12-23</lastmod>
@@ -158,7 +172,7 @@
 
   <url>
     <loc>https://blog.abinix.top/</loc>
-    <lastmod>2021-12-28</lastmod>
+    <lastmod>2022-01-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -166,42 +180,42 @@
   
   <url>
     <loc>https://blog.abinix.top/tags/%E6%B8%97%E9%80%8F/</loc>
-    <lastmod>2021-12-28</lastmod>
+    <lastmod>2022-01-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.abinix.top/tags/%E7%88%AC%E8%99%AB/</loc>
-    <lastmod>2021-12-28</lastmod>
+    <lastmod>2022-01-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.abinix.top/tags/Log4j/</loc>
-    <lastmod>2021-12-28</lastmod>
+    <lastmod>2022-01-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.abinix.top/tags/Docker/</loc>
-    <lastmod>2021-12-28</lastmod>
+    <lastmod>2022-01-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.abinix.top/tags/SQL%E6%B3%A8%E5%85%A5/</loc>
-    <lastmod>2021-12-28</lastmod>
+    <lastmod>2022-01-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.abinix.top/tags/%E8%AF%AD%E6%B3%95/</loc>
-    <lastmod>2021-12-28</lastmod>
+    <lastmod>2022-01-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -210,35 +224,35 @@
   
   <url>
     <loc>https://blog.abinix.top/categories/CTF/</loc>
-    <lastmod>2021-12-28</lastmod>
+    <lastmod>2022-01-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.abinix.top/categories/Web/</loc>
-    <lastmod>2021-12-28</lastmod>
+    <lastmod>2022-01-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.abinix.top/categories/%E6%B8%97%E9%80%8F/</loc>
-    <lastmod>2021-12-28</lastmod>
+    <lastmod>2022-01-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.abinix.top/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/</loc>
-    <lastmod>2021-12-28</lastmod>
+    <lastmod>2022-01-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.abinix.top/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2021-12-28</lastmod>
+    <lastmod>2022-01-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
