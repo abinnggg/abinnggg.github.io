@@ -12,7 +12,7 @@ img {
 
 /* 页脚footer */
 /* 渐变色滚动动画 */
-@-webkit-keyframes Gradient {
+/*@-webkit-keyframes Gradient {
   0% {
       background-position: 0 50%;
   }
@@ -52,7 +52,7 @@ img {
   100% {
       background-position: 0 50%;
   }
-}
+}*/
 #footer {
   background: linear-gradient(-45deg, #ee7752, #ce3e75, #23a6d5, #23d5ab);
   background-size: 400% 400%;
@@ -68,6 +68,7 @@ img {
   border-top-right-radius: 10px;
 }
 
+/*设置快透明*/
 .layout_post>#post {
   background: rgba(255,255,255,.5);
 }
@@ -79,6 +80,7 @@ img {
 #aside-content .card-widget {
   background: var(--light_bg_color)
 }
+
 
 #web_bg {
   background: -webkit-linear-gradient(
