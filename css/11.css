@@ -10,9 +10,8 @@ img {
       default;
 }
 
-/* 页脚footer */
 /* 渐变色滚动动画 */
-/*@-webkit-keyframes Gradient {
+@-webkit-keyframes Gradient {
   0% {
       background-position: 0 50%;
   }
@@ -52,7 +51,10 @@ img {
   100% {
       background-position: 0 50%;
   }
-}*/
+}
+
+/* 页脚footer */
+
 #footer {
   background: linear-gradient(-45deg, #ee7752, #ce3e75, #23a6d5, #23d5ab);
   background-size: 400% 400%;
@@ -81,8 +83,9 @@ img {
   background: var(--light_bg_color)
 }
 
-
-#web_bg {
+/*设置背景透明*/
+#web_bg 
+{
   background: -webkit-linear-gradient(
     0deg,
     rgba(247, 149, 51, 0.1) 0,
