@@ -6,7 +6,7 @@
   <link href="https://blog.abinix.top/atom.xml" rel="self"/>
   
   <link href="https://blog.abinix.top/"/>
-  <updated>2022-01-17T18:37:51.824Z</updated>
+  <updated>2022-02-22T03:03:02.700Z</updated>
   <id>https://blog.abinix.top/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Port knockd服务</title>
+    <link href="https://blog.abinix.top/2022/02/22/post/"/>
+    <id>https://blog.abinix.top/2022/02/22/post/</id>
+    <published>2022-02-22T03:01:03.000Z</published>
+    <updated>2022-02-22T03:03:02.700Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Port-knockd服务"><a href="#Port-knockd服务" class="headerlink" title="Port knockd服务"></a>Port knockd服务</h1><blockquote><p>在一次靶场渗透中遇到了这个服务，刚开始ssh怎么也连不上，后来搞懂了感觉挺有意思的，也是一个ctf出题思路，作为积累，就写个笔记记录一下吧</p></blockquote><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>端口敲门（Port knocking）技术，可以理解为密码或者暗号服务，简单来说，就是访问“预先设定好的顺序端口”，服务器收到某客户端的端口尝试序列后，动态修改防火墙规则，打开某特定端口,这时候，这个端口就可以被某IP进行访问了。访问顺序端口跟敲门一样，也类似于密码或者暗号。</p><h3 id="大白话"><a href="#大白话" class="headerlink" title="大白话"></a>大白话</h3><p>简单说就是事先设置好一个顺序，当你访问该端口时需要按照顺序来访问端口，这种服务很好的隐蔽了端口（因为扫出来端口是关闭状态），降低了被攻击风险</p><p>但在真实渗透环境中遇到，当ssh连不上时，可以查看/etc/knockd.conf文件确定是否有相关服务，再做后续操作</p><h2 id="端口敲门服务的实现"><a href="#端口敲门服务的实现" class="headerlink" title="端口敲门服务的实现"></a>端口敲门服务的实现</h2><p>先看一下没开启knock服务 对方22端口的状态</p><p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20220222100101.png"></p><p>为open状体</p><h3 id="安装knockd"><a href="#安装knockd" class="headerlink" title="安装knockd"></a>安装knockd</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get  install  knockd  -y #安装knock服务</span><br></pre></td></tr></table></figure><p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20220222091726.png"></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;knockd.conf #配置knock服务</span><br></pre></td></tr></table></figure><p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20220222093125.png"></p><h3 id="设置敲门顺序"><a href="#设置敲门顺序" class="headerlink" title="设置敲门顺序"></a>设置敲门顺序</h3><p><strong>sequence = 7777,8888,9999 此处为定义敲门顺序号</strong></p><p>当我们敲门时需按照这个顺序敲</p><p><strong>将 seq_timeout 设置为 30，以免超时时间过小出错</strong></p><p>最终配置如下（-I一定要改，否则敲门没用）</p><p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20220222104134.png"></p><h3 id="开启knockd"><a href="#开启knockd" class="headerlink" title="开启knockd"></a>开启knockd</h3><p>配置**/etc/default/knockd**，修改 START_KNOCKD=1。</p><p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20220222100539.png"></p><p>启动knockd</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service knockd start</span><br></pre></td></tr></table></figure><p>配置防火墙策略</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -A INPUT -p tcp --dport 22 -j DROP #禁止22端口的ssh登陆也就是22端口不为open状态</span><br></pre></td></tr></table></figure><p>如果设置错了用下面命令进行删除</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -D INPUT 编号</span><br></pre></td></tr></table></figure><h3 id="依次敲门"><a href="#依次敲门" class="headerlink" title="依次敲门"></a>依次敲门</h3><p>此时nmap扫对方22端口为filtered状态</p><p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20220222102254.png"></p><p>直接ssh登陆也是time out的</p><p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20220222102548.png"></p><p>使用nmap或者knockd敲门（也就是访问一下端口），这里使用knockd比较方便</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knock 192.168.17.133 7777 8888 9999 -d 50  </span><br></pre></td></tr></table></figure><p>敲门后，此时对方端口状态为</p><p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20220222104457.png"></p><p>对方防火墙策略里也多了一条，显示将22端口开启</p><p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20220222104514.png"></p><p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20220222104615.png"></p><p>登陆成功 </p><p>接下来敲门<strong>关闭</strong>22端口</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knock 192.168.17.133 9999 8888 7777 -d 50 #-d 延迟为50毫秒</span><br></pre></td></tr></table></figure><p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20220222104703.png"></p><p>已关闭</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;Port-knockd服务&quot;&gt;&lt;a href=&quot;#Port-knockd服务&quot; class=&quot;headerlink&quot; title=&quot;Port knockd服务&quot;&gt;&lt;/a&gt;Port knockd服务&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;在一次靶场渗透中遇到了这个</summary>
+      
+    
+    
+    
+    <category term="-学习笔记" scheme="https://blog.abinix.top/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Redteam靶场渗透</title>

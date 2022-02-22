@@ -70,7 +70,7 @@ img {
   border-top-right-radius: 10px;
 }
 
-/*设置快透明*/
+/*设置块透明*/
 .layout_post>#post {
   background: rgba(255,255,255,.5);
 }
