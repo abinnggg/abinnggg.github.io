@@ -44,13 +44,6 @@
   </url>
   
   <url>
-    <loc>https://blog.abins.top/2022/01/18/ATT&CK%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0%E5%AE%9E%E6%88%98%E9%9D%B6%E5%9C%BA%E5%9B%9B/</loc>
-    
-    <lastmod>2022-01-17</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.abins.top/2021/10/17/MSF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
     
     <lastmod>2021-12-23</lastmod>
@@ -59,13 +52,6 @@
   
   <url>
     <loc>https://blog.abins.top/2021/10/28/%E4%B9%9D%E6%9C%88%E5%A2%83%E5%A4%96%E6%B8%97%E9%80%8F/</loc>
-    
-    <lastmod>2021-12-23</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.abins.top/2021/12/24/ATT&CK%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0%E5%AE%9E%E6%88%98%E9%9D%B6%E5%9C%BA%E4%BA%94/</loc>
     
     <lastmod>2021-12-23</lastmod>
     
@@ -93,21 +79,7 @@
   </url>
   
   <url>
-    <loc>https://blog.abins.top/2021/12/23/ATT&CK%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0%E5%AE%9E%E6%88%98%E9%9D%B6%E5%9C%BA%E4%B8%80/</loc>
-    
-    <lastmod>2021-12-23</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.abins.top/2021/12/13/Apache%20Log4j%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/</loc>
-    
-    <lastmod>2021-12-23</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.abins.top/2021/12/23/%E4%BB%8E%E5%A4%96%E7%BD%91Thinkphp%E6%89%93%E5%85%A5%E5%B9%B6%E6%8B%BF%E4%B8%8B%E5%9F%9F%E6%8E%A7/</loc>
     
     <lastmod>2021-12-23</lastmod>
     
@@ -142,13 +114,6 @@
     <priority>1.0</priority>
   </url>
 
-  
-  <url>
-    <loc>https://blog.abins.top/tags/%E6%B8%97%E9%80%8F/</loc>
-    <lastmod>2023-05-22</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
   
   <url>
     <loc>https://blog.abins.top/tags/%E7%88%AC%E8%99%AB/</loc>
