@@ -3,11 +3,11 @@
   <title>A.binのBlog</title>
   
   
-  <link href="https://abinnggg.github.io/atom.xml" rel="self"/>
+  <link href="https://ab1n.xyz/atom.xml" rel="self"/>
   
-  <link href="https://abinnggg.github.io/"/>
+  <link href="https://ab1n.xyz/"/>
   <updated>2022-06-20T06:02:02.623Z</updated>
-  <id>https://abinnggg.github.io/</id>
+  <id>https://ab1n.xyz/</id>
   
   <author>
     <name>A.bin</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>台湾某大学sql/渗透</title>
-    <link href="https://abinnggg.github.io/2022/06/13/%E5%8F%B0%E6%B9%BE%E6%9F%90%E5%A4%A7%E5%AD%A6sql%E6%B8%97%E9%80%8F/"/>
-    <id>https://abinnggg.github.io/2022/06/13/%E5%8F%B0%E6%B9%BE%E6%9F%90%E5%A4%A7%E5%AD%A6sql%E6%B8%97%E9%80%8F/</id>
+    <link href="https://ab1n.xyz/2022/06/13/%E5%8F%B0%E6%B9%BE%E6%9F%90%E5%A4%A7%E5%AD%A6sql%E6%B8%97%E9%80%8F/"/>
+    <id>https://ab1n.xyz/2022/06/13/%E5%8F%B0%E6%B9%BE%E6%9F%90%E5%A4%A7%E5%AD%A6sql%E6%B8%97%E9%80%8F/</id>
     <published>2022-06-13T07:48:37.000Z</published>
     <updated>2022-06-20T06:02:02.623Z</updated>
     
@@ -30,15 +30,15 @@
     
     
     
-    <category term="-渗透" scheme="https://abinnggg.github.io/categories/%E6%B8%97%E9%80%8F/"/>
+    <category term="-渗透" scheme="https://ab1n.xyz/categories/%E6%B8%97%E9%80%8F/"/>
     
     
   </entry>
   
   <entry>
     <title>Port knockd服务</title>
-    <link href="https://abinnggg.github.io/2022/02/22/Port%20knockd%E6%9C%8D%E5%8A%A1/"/>
-    <id>https://abinnggg.github.io/2022/02/22/Port%20knockd%E6%9C%8D%E5%8A%A1/</id>
+    <link href="https://ab1n.xyz/2022/02/22/Port%20knockd%E6%9C%8D%E5%8A%A1/"/>
+    <id>https://ab1n.xyz/2022/02/22/Port%20knockd%E6%9C%8D%E5%8A%A1/</id>
     <published>2022-02-22T03:01:03.000Z</published>
     <updated>2022-02-22T06:45:01.197Z</updated>
     
@@ -53,15 +53,15 @@
     
     
     
-    <category term="-学习笔记" scheme="https://abinnggg.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <category term="-学习笔记" scheme="https://ab1n.xyz/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
   </entry>
   
   <entry>
     <title>Redteam靶场渗透</title>
-    <link href="https://abinnggg.github.io/2022/01/18/Redteam%E9%9D%B6%E5%9C%BA%E6%B8%97%E9%80%8F/"/>
-    <id>https://abinnggg.github.io/2022/01/18/Redteam%E9%9D%B6%E5%9C%BA%E6%B8%97%E9%80%8F/</id>
+    <link href="https://ab1n.xyz/2022/01/18/Redteam%E9%9D%B6%E5%9C%BA%E6%B8%97%E9%80%8F/"/>
+    <id>https://ab1n.xyz/2022/01/18/Redteam%E9%9D%B6%E5%9C%BA%E6%B8%97%E9%80%8F/</id>
     <published>2022-01-17T18:36:25.000Z</published>
     <updated>2022-01-17T18:37:51.824Z</updated>
     
@@ -77,15 +77,15 @@
     
     
     
-    <category term="-渗透" scheme="https://abinnggg.github.io/categories/%E6%B8%97%E9%80%8F/"/>
+    <category term="-渗透" scheme="https://ab1n.xyz/categories/%E6%B8%97%E9%80%8F/"/>
     
     
   </entry>
   
   <entry>
     <title>ATT&amp;CK红队评估实战靶场四</title>
-    <link href="https://abinnggg.github.io/2022/01/18/ATT&amp;CK%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0%E5%AE%9E%E6%88%98%E9%9D%B6%E5%9C%BA%E5%9B%9B/"/>
-    <id>https://abinnggg.github.io/2022/01/18/ATT&amp;CK%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0%E5%AE%9E%E6%88%98%E9%9D%B6%E5%9C%BA%E5%9B%9B/</id>
+    <link href="https://ab1n.xyz/2022/01/18/ATT&amp;CK%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0%E5%AE%9E%E6%88%98%E9%9D%B6%E5%9C%BA%E5%9B%9B/"/>
+    <id>https://ab1n.xyz/2022/01/18/ATT&amp;CK%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0%E5%AE%9E%E6%88%98%E9%9D%B6%E5%9C%BA%E5%9B%9B/</id>
     <published>2022-01-17T18:34:04.000Z</published>
     <updated>2022-01-17T18:36:13.491Z</updated>
     
@@ -100,15 +100,15 @@
     
     
     
-    <category term="-渗透" scheme="https://abinnggg.github.io/categories/%E6%B8%97%E9%80%8F/"/>
+    <category term="-渗透" scheme="https://ab1n.xyz/categories/%E6%B8%97%E9%80%8F/"/>
     
     
   </entry>
   
   <entry>
     <title>ATT&amp;CK红队评估实战靶场五</title>
-    <link href="https://abinnggg.github.io/2021/12/24/ATT&amp;CK%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0%E5%AE%9E%E6%88%98%E9%9D%B6%E5%9C%BA%E4%BA%94/"/>
-    <id>https://abinnggg.github.io/2021/12/24/ATT&amp;CK%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0%E5%AE%9E%E6%88%98%E9%9D%B6%E5%9C%BA%E4%BA%94/</id>
+    <link href="https://ab1n.xyz/2021/12/24/ATT&amp;CK%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0%E5%AE%9E%E6%88%98%E9%9D%B6%E5%9C%BA%E4%BA%94/"/>
+    <id>https://ab1n.xyz/2021/12/24/ATT&amp;CK%E7%BA%A2%E9%98%9F%E8%AF%84%E4%BC%B0%E5%AE%9E%E6%88%98%E9%9D%B6%E5%9C%BA%E4%BA%94/</id>
     <published>2021-12-23T16:30:47.000Z</published>
     <updated>2021-12-23T16:53:21.596Z</updated>
     
@@ -122,15 +122,15 @@
     
     
     
-    <category term="-渗透" scheme="https://abinnggg.github.io/categories/%E6%B8%97%E9%80%8F/"/>
+    <category term="-渗透" scheme="https://ab1n.xyz/categories/%E6%B8%97%E9%80%8F/"/>
     
     
   </entry>
   
   <entry>
     <title>从外网Thinkphp打入并拿下域控</title>
-    <link href="https://abinnggg.github.io/2021/12/23/%E4%BB%8E%E5%A4%96%E7%BD%91Thinkphp%E6%89%93%E5%85%A5%E5%B9%B6%E6%8B%BF%E4%B8%8B%E5%9F%9F%E6%8E%A7/"/>
-    <id>https://abinnggg.github.io/2021/12/23/%E4%BB%8E%E5%A4%96%E7%BD%91Thinkphp%E6%89%93%E5%85%A5%E5%B9%B6%E6%8B%BF%E4%B8%8B%E5%9F%9F%E6%8E%A7/</id>
+    <link href="https://ab1n.xyz/2021/12/23/%E4%BB%8E%E5%A4%96%E7%BD%91Thinkphp%E6%89%93%E5%85%A5%E5%B9%B6%E6%8B%BF%E4%B8%8B%E5%9F%9F%E6%8E%A7/"/>
+    <id>https://ab1n.xyz/2021/12/23/%E4%BB%8E%E5%A4%96%E7%BD%91Thinkphp%E6%89%93%E5%85%A5%E5%B9%B6%E6%8B%BF%E4%B8%8B%E5%9F%9F%E6%8E%A7/</id>
     <published>2021-12-23T15:29:36.000Z</published>
     <updated>2021-12-23T15:36:37.589Z</updated>
     
@@ -144,17 +144,17 @@
     
     
     
-    <category term="-渗透" scheme="https://abinnggg.github.io/categories/%E6%B8%97%E9%80%8F/"/>
+    <category term="-渗透" scheme="https://ab1n.xyz/categories/%E6%B8%97%E9%80%8F/"/>
     
     
-    <category term="渗透" scheme="https://abinnggg.github.io/tags/%E6%B8%97%E9%80%8F/"/>
+    <category term="渗透" scheme="https://ab1n.xyz/tags/%E6%B8%97%E9%80%8F/"/>
     
   </entry>
   
   <entry>
     <title>Apache Log4j漏洞复现</title>
-    <link href="https://abinnggg.github.io/2021/12/13/Apache%20Log4j%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
-    <id>https://abinnggg.github.io/2021/12/13/Apache%20Log4j%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/</id>
+    <link href="https://ab1n.xyz/2021/12/13/Apache%20Log4j%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
+    <id>https://ab1n.xyz/2021/12/13/Apache%20Log4j%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/</id>
     <published>2021-12-13T13:17:48.000Z</published>
     <updated>2021-12-23T15:39:23.641Z</updated>
     
@@ -171,17 +171,17 @@
     
     
     
-    <category term="-漏洞复现" scheme="https://abinnggg.github.io/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
+    <category term="-漏洞复现" scheme="https://ab1n.xyz/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
     
     
-    <category term="Log4j" scheme="https://abinnggg.github.io/tags/Log4j/"/>
+    <category term="Log4j" scheme="https://ab1n.xyz/tags/Log4j/"/>
     
   </entry>
   
   <entry>
     <title>九月境外渗透</title>
-    <link href="https://abinnggg.github.io/2021/10/28/%E4%B9%9D%E6%9C%88%E5%A2%83%E5%A4%96%E6%B8%97%E9%80%8F/"/>
-    <id>https://abinnggg.github.io/2021/10/28/%E4%B9%9D%E6%9C%88%E5%A2%83%E5%A4%96%E6%B8%97%E9%80%8F/</id>
+    <link href="https://ab1n.xyz/2021/10/28/%E4%B9%9D%E6%9C%88%E5%A2%83%E5%A4%96%E6%B8%97%E9%80%8F/"/>
+    <id>https://ab1n.xyz/2021/10/28/%E4%B9%9D%E6%9C%88%E5%A2%83%E5%A4%96%E6%B8%97%E9%80%8F/</id>
     <published>2021-10-28T10:29:38.000Z</published>
     <updated>2021-12-23T17:02:19.043Z</updated>
     
@@ -192,15 +192,15 @@
     
     
     
-    <category term="-渗透" scheme="https://abinnggg.github.io/categories/%E6%B8%97%E9%80%8F/"/>
+    <category term="-渗透" scheme="https://ab1n.xyz/categories/%E6%B8%97%E9%80%8F/"/>
     
     
   </entry>
   
   <entry>
     <title>MSF神器</title>
-    <link href="https://abinnggg.github.io/2021/10/17/MSF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    <id>https://abinnggg.github.io/2021/10/17/MSF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
+    <link href="https://ab1n.xyz/2021/10/17/MSF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>https://ab1n.xyz/2021/10/17/MSF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
     <published>2021-10-17T13:11:34.000Z</published>
     <updated>2021-12-23T17:24:16.208Z</updated>
     
@@ -218,15 +218,15 @@
     
     
     
-    <category term="-学习笔记" scheme="https://abinnggg.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <category term="-学习笔记" scheme="https://ab1n.xyz/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
   </entry>
   
   <entry>
     <title>Docker学习笔记</title>
-    <link href="https://abinnggg.github.io/2021/08/13/Docker%E7%AC%94%E8%AE%B0/"/>
-    <id>https://abinnggg.github.io/2021/08/13/Docker%E7%AC%94%E8%AE%B0/</id>
+    <link href="https://ab1n.xyz/2021/08/13/Docker%E7%AC%94%E8%AE%B0/"/>
+    <id>https://ab1n.xyz/2021/08/13/Docker%E7%AC%94%E8%AE%B0/</id>
     <published>2021-08-12T16:04:49.000Z</published>
     <updated>2021-12-23T15:40:57.510Z</updated>
     
@@ -244,17 +244,17 @@
     
     
     
-    <category term="-学习笔记" scheme="https://abinnggg.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <category term="-学习笔记" scheme="https://ab1n.xyz/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="-Docker" scheme="https://abinnggg.github.io/tags/Docker/"/>
+    <category term="-Docker" scheme="https://ab1n.xyz/tags/Docker/"/>
     
   </entry>
   
   <entry>
     <title>Upload-labs</title>
-    <link href="https://abinnggg.github.io/2021/07/31/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    <id>https://abinnggg.github.io/2021/07/31/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
+    <link href="https://ab1n.xyz/2021/07/31/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>https://ab1n.xyz/2021/07/31/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
     <published>2021-07-30T16:00:19.000Z</published>
     <updated>2022-01-18T17:04:30.917Z</updated>
     
@@ -273,15 +273,15 @@
     
     
     
-    <category term="-Web" scheme="https://abinnggg.github.io/categories/Web/"/>
+    <category term="-Web" scheme="https://ab1n.xyz/categories/Web/"/>
     
     
   </entry>
   
   <entry>
     <title>Misc学习笔记</title>
-    <link href="https://abinnggg.github.io/2021/07/17/Misc%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    <id>https://abinnggg.github.io/2021/07/17/Misc%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
+    <link href="https://ab1n.xyz/2021/07/17/Misc%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>https://ab1n.xyz/2021/07/17/Misc%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
     <published>2021-07-17T13:11:34.000Z</published>
     <updated>2021-09-13T02:20:58.997Z</updated>
     
@@ -298,15 +298,15 @@
     
     
     
-    <category term="-CTF" scheme="https://abinnggg.github.io/categories/CTF/"/>
+    <category term="-CTF" scheme="https://ab1n.xyz/categories/CTF/"/>
     
     
   </entry>
   
   <entry>
     <title>谷歌语法学习记录</title>
-    <link href="https://abinnggg.github.io/2021/06/29/%E8%B0%B7%E6%AD%8C%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    <id>https://abinnggg.github.io/2021/06/29/%E8%B0%B7%E6%AD%8C%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
+    <link href="https://ab1n.xyz/2021/06/29/%E8%B0%B7%E6%AD%8C%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>https://ab1n.xyz/2021/06/29/%E8%B0%B7%E6%AD%8C%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
     <published>2021-06-29T07:39:21.000Z</published>
     <updated>2021-12-23T15:41:13.008Z</updated>
     
@@ -320,17 +320,17 @@
     
     
     
-    <category term="-学习笔记" scheme="https://abinnggg.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <category term="-学习笔记" scheme="https://ab1n.xyz/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="语法" scheme="https://abinnggg.github.io/tags/%E8%AF%AD%E6%B3%95/"/>
+    <category term="语法" scheme="https://ab1n.xyz/tags/%E8%AF%AD%E6%B3%95/"/>
     
   </entry>
   
   <entry>
     <title>爬虫项目</title>
-    <link href="https://abinnggg.github.io/2021/05/23/%E7%88%AC%E8%99%AB%E9%A1%B9%E7%9B%AE/"/>
-    <id>https://abinnggg.github.io/2021/05/23/%E7%88%AC%E8%99%AB%E9%A1%B9%E7%9B%AE/</id>
+    <link href="https://ab1n.xyz/2021/05/23/%E7%88%AC%E8%99%AB%E9%A1%B9%E7%9B%AE/"/>
+    <id>https://ab1n.xyz/2021/05/23/%E7%88%AC%E8%99%AB%E9%A1%B9%E7%9B%AE/</id>
     <published>2021-05-23T07:58:21.000Z</published>
     <updated>2022-01-18T17:10:22.444Z</updated>
     
@@ -349,14 +349,14 @@
     
     
     
-    <category term="爬虫" scheme="https://abinnggg.github.io/tags/%E7%88%AC%E8%99%AB/"/>
+    <category term="爬虫" scheme="https://ab1n.xyz/tags/%E7%88%AC%E8%99%AB/"/>
     
   </entry>
   
   <entry>
     <title>关于SQLmap</title>
-    <link href="https://abinnggg.github.io/2021/05/19/SQLmap%E4%BD%BF%E7%94%A8/"/>
-    <id>https://abinnggg.github.io/2021/05/19/SQLmap%E4%BD%BF%E7%94%A8/</id>
+    <link href="https://ab1n.xyz/2021/05/19/SQLmap%E4%BD%BF%E7%94%A8/"/>
+    <id>https://ab1n.xyz/2021/05/19/SQLmap%E4%BD%BF%E7%94%A8/</id>
     <published>2021-05-19T12:18:19.000Z</published>
     <updated>2021-12-23T15:42:08.945Z</updated>
     
@@ -370,17 +370,17 @@
     
     
     
-    <category term="-学习笔记" scheme="https://abinnggg.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <category term="-学习笔记" scheme="https://ab1n.xyz/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="SQL注入" scheme="https://abinnggg.github.io/tags/SQL%E6%B3%A8%E5%85%A5/"/>
+    <category term="SQL注入" scheme="https://ab1n.xyz/tags/SQL%E6%B3%A8%E5%85%A5/"/>
     
   </entry>
   
   <entry>
     <title>sqli-labs</title>
-    <link href="https://abinnggg.github.io/2021/05/19/sqli-labs%E6%89%93%E5%85%B3/"/>
-    <id>https://abinnggg.github.io/2021/05/19/sqli-labs%E6%89%93%E5%85%B3/</id>
+    <link href="https://ab1n.xyz/2021/05/19/sqli-labs%E6%89%93%E5%85%B3/"/>
+    <id>https://ab1n.xyz/2021/05/19/sqli-labs%E6%89%93%E5%85%B3/</id>
     <published>2021-05-19T12:18:19.000Z</published>
     <updated>2022-01-18T17:07:09.007Z</updated>
     
@@ -397,10 +397,10 @@
     
     
     
-    <category term="-学习笔记" scheme="https://abinnggg.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <category term="-学习笔记" scheme="https://ab1n.xyz/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="SQL注入" scheme="https://abinnggg.github.io/tags/SQL%E6%B3%A8%E5%85%A5/"/>
+    <category term="SQL注入" scheme="https://ab1n.xyz/tags/SQL%E6%B3%A8%E5%85%A5/"/>
     
   </entry>
   
